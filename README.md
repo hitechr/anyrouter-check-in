@@ -36,7 +36,7 @@
 6. 复制所有 cookies
 
 #### 获取 API User：
-通常在网站的用户设置或 API 设置中可以找到，每个账号都有唯一的标识。
+按照下方图片教程操作获得。
 
 ### 3. 设置 GitHub Environment Secret
 
@@ -276,6 +276,10 @@
 
 ### Server酱
 - `SERVERPUSHKEY`: Server酱的 SendKey
+
+### Telegram Bot
+- `TELEGRAM_BOT_TOKEN`: Telegram Bot 的 Token
+- `TELEGRAM_CHAT_ID`: Telegram Chat ID
 
 配置步骤：
 1. 在仓库的 Settings -> Environments -> production -> Environment secrets 中添加上述环境变量
