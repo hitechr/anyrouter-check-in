@@ -199,7 +199,8 @@
     "sign_in_path": "/api/checkin",
     "user_info_path": "/api/profile",
     "api_user_key": "New-Api-User",
-    "bypass_method": "waf_cookies"
+    "bypass_method": "waf_cookies",
+    "waf_cookie_names": ["acw_tc", "cdn_sec_tc", "acw_sc__v2"]
   }
 }
 ```
@@ -226,6 +227,7 @@
 - `bypass_method` (可选)：WAF 绕过方法
   - `"waf_cookies"`：使用 Playwright 打开浏览器获取 WAF cookies 后再执行签到
   - 不设置或 `null`：直接使用用户 cookies 执行签到（适合无 WAF 保护的网站）
+- `waf_cookie_names` (可选)：绕过 WAF 所需 cookie 的名称列表，`bypass_method` 为 `waf_cookies` 时必须设置
 
 **配置示例**（完整）：
 ```json
@@ -280,6 +282,11 @@
 ### Telegram Bot
 - `TELEGRAM_BOT_TOKEN`: Telegram Bot 的 Token
 - `TELEGRAM_CHAT_ID`: Telegram Chat ID
+
+### Gotify 推送
+- `GOTIFY_URL`: Gotify 服务的 URL 地址（例如: https://your-gotify-server/message）
+- `GOTIFY_TOKEN`: Gotify 应用的访问令牌
+- `GOTIFY_PRIORITY`: Gotify 消息优先级 (1-10, 默认为 9)
 
 配置步骤：
 1. 在仓库的 Settings -> Environments -> production -> Environment secrets 中添加上述环境变量
