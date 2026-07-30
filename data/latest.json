@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-07-30T10:49:53Z",
+  "generated_at": "2026-07-30T11:45:16Z",
   "accounts": [
     {
       "id": "957d2b328823b676",
       "name": "我的主账号",
       "provider": "anyrouter",
       "checkin_success": true,
-      "balance": 3912.65,
-      "total_usage": 5060.22
+      "balance": 3908.6,
+      "total_usage": 5064.27
     },
     {
       "id": "8fa56e1f902a418e",
@@ -31,8 +31,8 @@
       "name": "备用账号4-oth",
       "provider": "anyrouter",
       "checkin_success": true,
-      "balance": 3860.94,
-      "total_usage": 1214.06
+      "balance": 3854.4,
+      "total_usage": 1220.6
     }
   ]
 }
