@@ -21,6 +21,7 @@
 - ✅ 单个/多账号自动签到
 - ✅ 多种机器人通知（可选）
 - ✅ 绕过 WAF 限制
+- ✅ GitHub Pages 账户用量统计（可选）
 
 ## 使用方法
 
@@ -85,6 +86,7 @@
 - `api_user`：session cookies 登录时用于请求头的 new-api-user 参数；邮箱密码登录可省略
 - `provider` (可选)：指定使用的服务商，默认为 `anyrouter`
 - `name` (可选)：自定义账号显示名称，用于通知和日志中标识账号
+- `stats_id` (统计页面启用时必需)：账号的唯一稳定标识，修改别名或调整账号顺序时请保持不变
 
 **默认值说明**：
 
@@ -121,8 +123,24 @@
 
 ## 执行时间
 
-- 脚本每 6 小时执行一次（1. action 无法准确触发，基本延时 1~1.5h；2. 目前观测到 anyrouter 的签到是每 24h 而不是零点就可签到）
+- 脚本每天在北京时间 00:05、09:00-20:00 定时执行（GitHub Actions 可能延迟触发）
 - 你也可以随时手动触发签到
+
+## 账户用量统计页面（可选）
+
+统计页面完全使用 GitHub Actions、`stats-data` 分支和 GitHub Pages，不需要额外服务器或数据库。页面展示每个账号的当前余额、累计使用量、今日使用量、签到状态和最近 30 天趋势。
+
+开启步骤：
+
+1. 进入仓库 `Settings` -> `Secrets and variables` -> `Actions` -> `Variables`
+2. 新增仓库变量 `ENABLE_STATS_PAGE`，值为 `true`
+3. 为 `ANYROUTER_ACCOUNTS` 中的每个账号增加唯一且稳定的 `stats_id`，例如 `"stats_id": "primary"`
+4. 进入 `Settings` -> `Pages`，将 `Source` 设置为 `GitHub Actions`
+5. 手动运行一次 `AnyRouter 自动签到` workflow
+
+首次运行会自动创建 `stats-data` 分支；每日使用量以北京时间 00:05 左右的快照作为自然日边界，从开启后的第二个自然日开始完整显示。统计页面只发布账号别名、Provider、余额、用量和签到状态，不会写入 Cookies、邮箱、密码或 API User。
+
+> GitHub Pages 通常可被公网访问，请避免在账号 `name` 中填写邮箱、手机号等敏感信息。
 
 ## 注意事项
 

@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="color-scheme" content="light">
+	<title>AnyRouter 账户用量</title>
+	<style>
+		:root {
+			--bg: #f4f6f7;
+			--surface: #ffffff;
+			--text: #172026;
+			--muted: #64727d;
+			--border: #dbe2e6;
+			--green: #147a5b;
+			--green-soft: #e8f5ef;
+			--blue: #23658a;
+			--amber: #985b10;
+			--red: #b42318;
+			--red-soft: #fff0ee;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			margin: 0;
+			min-width: 320px;
+			background: var(--bg);
+			color: var(--text);
+			font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+			font-size: 14px;
+			line-height: 1.5;
+		}
+
+		.topbar {
+			background: var(--surface);
+			border-bottom: 1px solid var(--border);
+		}
+
+		.topbar-inner,
+		main {
+			width: min(1180px, calc(100% - 40px));
+			margin: 0 auto;
+		}
+
+		.topbar-inner {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			min-height: 82px;
+			gap: 24px;
+		}
+
+		.brand {
+			display: flex;
+			align-items: center;
+			gap: 12px;
+			min-width: 0;
+		}
+
+		.brand-mark {
+			display: grid;
+			place-items: center;
+			width: 36px;
+			height: 36px;
+			border-radius: 6px;
+			background: var(--text);
+			color: #ffffff;
+			font-weight: 750;
+			font-size: 15px;
+		}
+
+		h1,
+		h2,
+		p {
+			margin: 0;
+		}
+
+		h1 {
+			font-size: 19px;
+			font-weight: 700;
+			letter-spacing: 0;
+		}
+
+		.brand-subtitle,
+		.updated-label,
+		.section-meta {
+			color: var(--muted);
+			font-size: 12px;
+		}
+
+		.updated {
+			display: flex;
+			align-items: center;
+			gap: 9px;
+			white-space: nowrap;
+		}
+
+		.status-dot {
+			width: 8px;
+			height: 8px;
+			border-radius: 50%;
+			background: var(--green);
+			box-shadow: 0 0 0 3px var(--green-soft);
+		}
+
+		main {
+			padding: 28px 0 48px;
+		}
+
+		.metrics {
+			display: grid;
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+			background: var(--surface);
+			border: 1px solid var(--border);
+			border-radius: 6px;
+		}
+
+		.metric {
+			min-width: 0;
+			padding: 20px 22px;
+			border-right: 1px solid var(--border);
+		}
+
+		.metric:last-child {
+			border-right: 0;
+		}
+
+		.metric-label {
+			color: var(--muted);
+			font-size: 12px;
+			font-weight: 600;
+		}
+
+		.metric-value {
+			display: block;
+			margin-top: 5px;
+			font-size: 24px;
+			font-weight: 720;
+			line-height: 1.2;
+			font-variant-numeric: tabular-nums;
+			white-space: nowrap;
+		}
+
+		.metric-detail {
+			display: block;
+			margin-top: 5px;
+			color: var(--muted);
+			font-size: 12px;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
+		.section {
+			margin-top: 28px;
+		}
+
+		.section-header {
+			display: flex;
+			align-items: flex-end;
+			justify-content: space-between;
+			gap: 20px;
+			margin-bottom: 12px;
+		}
+
+		h2 {
+			font-size: 16px;
+			font-weight: 700;
+			letter-spacing: 0;
+		}
+
+		.table-shell {
+			overflow-x: auto;
+			background: var(--surface);
+			border: 1px solid var(--border);
+			border-radius: 6px;
+		}
+
+		table {
+			width: 100%;
+			min-width: 860px;
+			border-collapse: collapse;
+		}
+
+		th,
+		td {
+			padding: 15px 18px;
+			text-align: right;
+			vertical-align: middle;
+			border-bottom: 1px solid var(--border);
+		}
+
+		th {
+			background: #f9fafb;
+			color: var(--muted);
+			font-size: 11px;
+			font-weight: 700;
+			text-transform: uppercase;
+		}
+
+		th:first-child,
+		td:first-child,
+		th:nth-child(2),
+		td:nth-child(2) {
+			text-align: left;
+		}
+
+		tbody tr:last-child td {
+			border-bottom: 0;
+		}
+
+		tbody tr:hover {
+			background: #fbfcfc;
+		}
+
+		.account-name {
+			font-weight: 680;
+			max-width: 230px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+		.provider {
+			margin-top: 2px;
+			color: var(--muted);
+			font-size: 12px;
+		}
+
+		.badge {
+			display: inline-flex;
+			align-items: center;
+			gap: 7px;
+			min-height: 26px;
+			padding: 3px 9px;
+			border-radius: 999px;
+			background: var(--green-soft);
+			color: var(--green);
+			font-size: 12px;
+			font-weight: 650;
+			white-space: nowrap;
+		}
+
+		.badge::before {
+			content: "";
+			width: 6px;
+			height: 6px;
+			border-radius: 50%;
+			background: currentColor;
+		}
+
+		.badge.failed {
+			background: var(--red-soft);
+			color: var(--red);
+		}
+
+		.amount {
+			font-weight: 680;
+			font-variant-numeric: tabular-nums;
+			white-space: nowrap;
+		}
+
+		.amount.today {
+			color: var(--blue);
+		}
+
+		.sparkline-cell {
+			width: 178px;
+		}
+
+		.sparkline {
+			display: block;
+			width: 140px;
+			height: 36px;
+			margin-left: auto;
+			overflow: visible;
+		}
+
+		.sparkline-line {
+			fill: none;
+			stroke: var(--blue);
+			stroke-width: 2;
+			stroke-linecap: round;
+			stroke-linejoin: round;
+		}
+
+		.sparkline-baseline {
+			stroke: var(--border);
+			stroke-width: 1;
+		}
+
+		.sparkline-empty {
+			color: var(--muted);
+			font-size: 12px;
+		}
+
+		.state {
+			display: grid;
+			place-items: center;
+			min-height: 260px;
+			padding: 40px;
+			color: var(--muted);
+			text-align: center;
+		}
+
+		.error-title {
+			color: var(--red);
+			font-weight: 700;
+		}
+
+		.hidden {
+			display: none;
+		}
+
+		@media (max-width: 820px) {
+			.topbar-inner,
+			main {
+				width: min(100% - 28px, 1180px);
+			}
+
+			.metrics {
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+			}
+
+			.metric:nth-child(2) {
+				border-right: 0;
+			}
+
+			.metric:nth-child(-n + 2) {
+				border-bottom: 1px solid var(--border);
+			}
+		}
+
+		@media (max-width: 520px) {
+			.topbar-inner {
+				align-items: flex-start;
+				flex-direction: column;
+				justify-content: center;
+				gap: 8px;
+				padding: 16px 0;
+			}
+
+			.updated {
+				padding-left: 48px;
+			}
+
+			main {
+				padding-top: 18px;
+			}
+
+			.metric {
+				padding: 16px;
+			}
+
+			.metric-value {
+				font-size: 20px;
+			}
+
+			.section-header {
+				align-items: flex-start;
+				flex-direction: column;
+				gap: 3px;
+			}
+		}
+	</style>
+</head>
+<body>
+	<header class="topbar">
+		<div class="topbar-inner">
+			<div class="brand">
+				<div class="brand-mark" aria-hidden="true">AR</div>
+				<div>
+					<h1>AnyRouter 账户用量</h1>
+					<p class="brand-subtitle">账户余额与每日使用统计</p>
+				</div>
+			</div>
+			<div class="updated" aria-live="polite">
+				<span class="status-dot" id="status-dot"></span>
+				<span class="updated-label" id="updated-at">正在加载</span>
+			</div>
+		</div>
+	</header>
+
+	<main>
+		<section class="metrics" aria-label="汇总指标">
+			<div class="metric">
+				<span class="metric-label">账户总数</span>
+				<strong class="metric-value" id="account-count">--</strong>
+				<span class="metric-detail" id="account-status">--</span>
+			</div>
+			<div class="metric">
+				<span class="metric-label">总余额</span>
+				<strong class="metric-value" id="total-balance">--</strong>
+				<span class="metric-detail">当前可用额度</span>
+			</div>
+			<div class="metric">
+				<span class="metric-label">累计使用</span>
+				<strong class="metric-value" id="total-usage">--</strong>
+				<span class="metric-detail">全部账户累计</span>
+			</div>
+			<div class="metric">
+				<span class="metric-label">今日使用</span>
+				<strong class="metric-value" id="today-usage">--</strong>
+				<span class="metric-detail" id="usage-date">--</span>
+			</div>
+		</section>
+
+		<section class="section" aria-labelledby="accounts-title">
+			<div class="section-header">
+				<h2 id="accounts-title">账户概览</h2>
+				<span class="section-meta">最近 30 个自然日</span>
+			</div>
+			<div class="table-shell">
+				<div class="state" id="loading-state">正在读取统计数据</div>
+				<div class="state hidden" id="error-state">
+					<div>
+						<p class="error-title">统计数据暂不可用</p>
+						<p id="error-detail">请稍后刷新页面</p>
+					</div>
+				</div>
+				<table class="hidden" id="accounts-table">
+					<thead>
+						<tr>
+							<th scope="col">账户</th>
+							<th scope="col">状态</th>
+							<th scope="col">当前余额</th>
+							<th scope="col">累计使用</th>
+							<th scope="col">今日使用</th>
+							<th scope="col">30 天趋势</th>
+						</tr>
+					</thead>
+					<tbody id="accounts-body"></tbody>
+				</table>
+			</div>
+		</section>
+	</main>
+
+	<script>
+		const currency = new Intl.NumberFormat('zh-CN', {
+			style: 'currency',
+			currency: 'USD',
+			minimumFractionDigits: 2,
+			maximumFractionDigits: 2
+		});
+
+		const isNumber = (value) => typeof value === 'number' && Number.isFinite(value);
+		const formatMoney = (value) => isNumber(value) ? currency.format(value) : '--';
+		const byId = (id) => document.getElementById(id);
+
+		function dailyUsage(history, accountId) {
+			const points = [];
+			for (const day of history) {
+				const openingAccounts = Array.isArray(day.opening_accounts) ? day.opening_accounts : day.accounts;
+				const closingAccounts = Array.isArray(day.closing_accounts) ? day.closing_accounts : day.accounts;
+				const opening = openingAccounts.find((account) => account.id === accountId);
+				const closing = closingAccounts.find((account) => account.id === accountId);
+				if (!opening || !closing || !isNumber(opening.total_usage) || !isNumber(closing.total_usage)) continue;
+				const usage = closing.total_usage - opening.total_usage;
+				if (usage >= 0) points.push({ date: day.date, value: usage });
+			}
+			return points;
+		}
+
+		function createSparkline(points) {
+			if (points.length < 2) {
+				const text = document.createElement('span');
+				text.className = 'sparkline-empty';
+				text.textContent = '数据积累中';
+				return text;
+			}
+
+			const values = points.slice(-30).map((point) => point.value);
+			const width = 140;
+			const height = 36;
+			const padding = 3;
+			const max = Math.max(...values);
+			const min = Math.min(...values);
+			const range = max - min || 1;
+			const coordinates = values.map((value, index) => {
+				const x = padding + (index * (width - padding * 2)) / (values.length - 1);
+				const y = height - padding - ((value - min) / range) * (height - padding * 2);
+				return `${x.toFixed(1)},${y.toFixed(1)}`;
+			});
+
+			const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+			svg.setAttribute('class', 'sparkline');
+			svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+			svg.setAttribute('role', 'img');
+			svg.setAttribute('aria-label', '最近 30 天每日使用趋势');
+
+			const baseline = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+			baseline.setAttribute('class', 'sparkline-baseline');
+			baseline.setAttribute('x1', String(padding));
+			baseline.setAttribute('x2', String(width - padding));
+			baseline.setAttribute('y1', String(height - padding));
+			baseline.setAttribute('y2', String(height - padding));
+			svg.appendChild(baseline);
+
+			const line = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
+			line.setAttribute('class', 'sparkline-line');
+			line.setAttribute('points', coordinates.join(' '));
+			svg.appendChild(line);
+			return svg;
+		}
+
+		function createAccountRow(account, snapshots) {
+			const row = document.createElement('tr');
+			const usagePoints = dailyUsage(snapshots, account.id);
+			const latestDate = snapshots[snapshots.length - 1].date;
+			const latestPoint = usagePoints[usagePoints.length - 1];
+			const today = latestPoint && latestPoint.date === latestDate ? latestPoint.value : null;
+
+			const identityCell = document.createElement('td');
+			const name = document.createElement('div');
+			name.className = 'account-name';
+			name.textContent = account.name;
+			name.title = account.name;
+			const provider = document.createElement('div');
+			provider.className = 'provider';
+			provider.textContent = account.provider;
+			identityCell.append(name, provider);
+
+			const statusCell = document.createElement('td');
+			const badge = document.createElement('span');
+			badge.className = account.checkin_success ? 'badge' : 'badge failed';
+			badge.textContent = account.checkin_success ? '正常' : '失败';
+			statusCell.appendChild(badge);
+
+			const balanceCell = document.createElement('td');
+			balanceCell.className = 'amount';
+			balanceCell.textContent = formatMoney(account.balance);
+
+			const totalCell = document.createElement('td');
+			totalCell.className = 'amount';
+			totalCell.textContent = formatMoney(account.total_usage);
+
+			const todayCell = document.createElement('td');
+			todayCell.className = 'amount today';
+			todayCell.textContent = formatMoney(today);
+
+			const sparklineCell = document.createElement('td');
+			sparklineCell.className = 'sparkline-cell';
+			sparklineCell.appendChild(createSparkline(usagePoints));
+
+			row.append(identityCell, statusCell, balanceCell, totalCell, todayCell, sparklineCell);
+			return { row, today };
+		}
+
+		function render(history) {
+			const snapshots = Array.isArray(history.snapshots) ? history.snapshots : [];
+			if (!snapshots.length) throw new Error('暂无统计记录');
+			const recentSnapshots = snapshots.slice(-31);
+			const latest = recentSnapshots[recentSnapshots.length - 1];
+			const accounts = Array.isArray(latest.accounts) ? latest.accounts : [];
+			if (!accounts.length) throw new Error('最新记录中没有账户数据');
+
+			const body = byId('accounts-body');
+			let todayTotal = 0;
+			let hasTodayUsage = false;
+			for (const account of accounts) {
+				const result = createAccountRow(account, recentSnapshots);
+				body.appendChild(result.row);
+				if (isNumber(result.today)) {
+					todayTotal += result.today;
+					hasTodayUsage = true;
+				}
+			}
+
+			const successful = accounts.filter((account) => account.checkin_success).length;
+			const totalBalance = accounts.reduce((sum, account) => sum + (isNumber(account.balance) ? account.balance : 0), 0);
+			const totalUsage = accounts.reduce((sum, account) => sum + (isNumber(account.total_usage) ? account.total_usage : 0), 0);
+
+			byId('account-count').textContent = String(accounts.length);
+			byId('account-status').textContent = `${successful} 个正常 / ${accounts.length - successful} 个失败`;
+			byId('total-balance').textContent = formatMoney(totalBalance);
+			byId('total-usage').textContent = formatMoney(totalUsage);
+			byId('today-usage').textContent = hasTodayUsage ? formatMoney(todayTotal) : '--';
+			byId('usage-date').textContent = latest.date;
+			byId('updated-at').textContent = `更新于 ${new Date(latest.generated_at).toLocaleString('zh-CN', {
+				timeZone: history.timezone || 'Asia/Shanghai',
+				hour12: false
+			})}`;
+			byId('status-dot').style.background = successful === accounts.length ? 'var(--green)' : 'var(--amber)';
+			byId('loading-state').classList.add('hidden');
+			byId('accounts-table').classList.remove('hidden');
+		}
+
+		function showError(error) {
+			byId('loading-state').classList.add('hidden');
+			byId('error-state').classList.remove('hidden');
+			byId('error-detail').textContent = error instanceof Error ? error.message : '请稍后刷新页面';
+			byId('updated-at').textContent = '数据加载失败';
+			byId('status-dot').style.background = 'var(--red)';
+		}
+
+		fetch('./data/history.json', { cache: 'no-store' })
+			.then((response) => {
+				if (!response.ok) throw new Error(`读取失败 (${response.status})`);
+				return response.json();
+			})
+			.then(render)
+			.catch(showError);
+	</script>
+</body>
+</html>

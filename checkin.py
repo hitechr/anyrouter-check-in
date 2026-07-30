@@ -37,6 +37,7 @@ from utils.config import AccountConfig, AppConfig, load_accounts_config
 from utils.debug import debug_print, is_debug_enabled
 from utils.notify import notify
 from utils.proxy import get_playwright_proxy, get_proxy_server
+from utils.stats import build_account_stat, write_snapshot_from_env
 
 load_dotenv()
 
@@ -502,6 +503,7 @@ async def main():
 		sys.exit(1)
 
 	print(f'[INFO] Found {len(accounts)} account configurations')
+	stats_enabled = bool(os.getenv('STATS_OUTPUT_PATH', '').strip())
 
 	last_balance_hash = load_balance_hash()
 
@@ -510,13 +512,24 @@ async def main():
 	notification_content = []
 	current_balances = {}
 	account_check_in_details = {}
+	account_stats = []
 	need_notify = False
 	balance_changed = False
 
 	for i, account in enumerate(accounts):
 		account_key = f'account_{i + 1}'
+		account_name = account.get_display_name(i)
+		account_stat = None
+		if stats_enabled:
+			assert account.stats_id is not None
+			account_stat = build_account_stat(account.stats_id, account.provider, account_name, False, None)
 		try:
 			success, user_info_before, user_info_after = await check_in_account(account, i, app_config)
+			if stats_enabled:
+				assert account.stats_id is not None
+				account_stat = build_account_stat(
+					account.stats_id, account.provider, account_name, success, user_info_after
+				)
 			if success:
 				success_count += 1
 
@@ -525,7 +538,6 @@ async def main():
 			if not success:
 				should_notify_this_account = True
 				need_notify = True
-				account_name = account.get_display_name(i)
 				print(f'[NOTIFY] {account_name} failed, will send notification')
 
 			if user_info_after and user_info_after.get('success'):
@@ -559,7 +571,6 @@ async def main():
 					}
 
 			if should_notify_this_account:
-				account_name = account.get_display_name(i)
 				status = '[SUCCESS]' if success else '[FAIL]'
 				account_result = f'{status} {account_name}'
 				if user_info_after and user_info_after.get('success'):
@@ -569,10 +580,15 @@ async def main():
 				notification_content.append(account_result)
 
 		except Exception as e:
-			account_name = account.get_display_name(i)
 			print(f'[FAILED] {account_name} processing exception: {e}')
 			need_notify = True
 			notification_content.append(f'[FAIL] {account_name} exception: {str(e)[:50]}...')
+		if account_stat:
+			account_stats.append(account_stat)
+
+	stats_output_path = write_snapshot_from_env(account_stats)
+	if stats_output_path:
+		print(f'[STATS] Account statistics snapshot written to {stats_output_path}')
 
 	current_balance_hash = generate_balance_hash(current_balances) if current_balances else None
 	if current_balance_hash:

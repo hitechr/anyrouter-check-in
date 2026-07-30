@@ -153,6 +153,7 @@ class AccountConfig:
 	api_user: str | None = None
 	provider: str = 'anyrouter'
 	name: str | None = None
+	stats_id: str | None = None
 	email: str | None = None
 	password: str | None = None
 
@@ -167,6 +168,7 @@ class AccountConfig:
 			api_user=data.get('api_user'),
 			provider=provider,
 			name=name if name else None,
+			stats_id=data.get('stats_id'),
 			email=data.get('email'),
 			password=data.get('password'),
 		)
@@ -200,10 +202,24 @@ def load_accounts_config() -> list[AccountConfig] | None:
 			return None
 
 		accounts = []
+		stats_enabled = bool(os.getenv('STATS_OUTPUT_PATH', '').strip())
+		stats_ids = set()
 		for i, account_dict in enumerate(accounts_data):
 			if not isinstance(account_dict, dict):
 				print(f'ERROR: Account {i + 1} configuration format is incorrect')
 				return None
+
+			if stats_enabled:
+				stats_id = account_dict.get('stats_id')
+				if not isinstance(stats_id, str) or not stats_id.strip():
+					print(f'ERROR: Account {i + 1} must have a non-empty stats_id when statistics are enabled')
+					return None
+				stats_id = stats_id.strip()
+				if stats_id in stats_ids:
+					print(f'ERROR: Duplicate stats_id found: {stats_id}')
+					return None
+				stats_ids.add(stats_id)
+				account_dict['stats_id'] = stats_id
 
 			if 'api_user' not in account_dict:
 				has_login = account_dict.get('email') and account_dict.get('password')

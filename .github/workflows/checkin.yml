@@ -2,6 +2,7 @@ name: AnyRouter 自动签到
 on:
   schedule:
     - cron: '0 1,2,3,4,5,6,7,8,9,10,11,12 * * *'
+    - cron: '5 16 * * *'
   workflow_dispatch:
     inputs:
       debug:
@@ -10,10 +11,19 @@ on:
         default: false
         type: boolean
 
+concurrency:
+  group: anyrouter-checkin-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   checkin:
+    if: github.event_name != 'schedule' || github.event.schedule != '5 16 * * *' || vars.ENABLE_STATS_PAGE == 'true'
     runs-on: ubuntu-latest
     environment: production
+    permissions:
+      contents: write
+    outputs:
+      stats-ready: ${{ steps.upload-stats.outcome == 'success' }}
     env:
       PYTHONIOENCODING: utf-8
       PYTHONUNBUFFERED: 1
@@ -113,8 +123,45 @@ jobs:
         GOTIFY_PRIORITY: ${{ secrets.GOTIFY_PRIORITY }}
         BARK_KEY: ${{ secrets.BARK_KEY }}
         BARK_SERVER: ${{ secrets.BARK_SERVER }}
+        STATS_OUTPUT_PATH: ${{ vars.ENABLE_STATS_PAGE == 'true' && '.tmp/stats-snapshot.json' || '' }}
       run: |
         xvfb-run -a --server-args="-screen 0 1920x1080x24" uv run checkin.py
+
+    - name: 生成并保存统计页面
+      id: build-stats
+      if: always() && vars.ENABLE_STATS_PAGE == 'true' && hashFiles('.tmp/stats-snapshot.json') != ''
+      run: |
+        if git fetch origin stats-data:refs/remotes/origin/stats-data; then
+          git worktree add --detach .tmp/stats-data refs/remotes/origin/stats-data
+        else
+          git worktree add --detach .tmp/stats-data
+          git -C .tmp/stats-data switch --orphan stats-data
+        fi
+
+        uv run python -m scripts.build_stats_site \
+          --snapshot .tmp/stats-snapshot.json \
+          --page web/index.html \
+          --output .tmp/stats-data \
+          --timezone Asia/Shanghai
+
+        git -C .tmp/stats-data config user.name "github-actions[bot]"
+        git -C .tmp/stats-data config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git -C .tmp/stats-data add index.html data
+        if ! git -C .tmp/stats-data diff --cached --quiet; then
+          git -C .tmp/stats-data commit -m "STATS: 更新账号用量统计"
+          git -C .tmp/stats-data push origin HEAD:stats-data
+        fi
+
+        mkdir -p .tmp/site
+        cp .tmp/stats-data/index.html .tmp/site/index.html
+        cp -R .tmp/stats-data/data .tmp/site/data
+
+    - name: 上传统计页面
+      id: upload-stats
+      if: always() && steps.build-stats.outcome == 'success'
+      uses: actions/upload-pages-artifact@v4
+      with:
+        path: .tmp/site
 
     - name: 上传调试截图
       if: always() && env.DEBUG_MODE == 'true'
@@ -142,3 +189,18 @@ jobs:
           echo "调试截图已上传为 artifact: checkin-screenshots-${{ github.run_id }}"
           ls -la checkin_screenshots/
         fi
+
+  deploy-stats:
+    if: always() && needs.checkin.outputs.stats-ready == 'true'
+    needs: checkin
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+    - name: 发布统计页面
+      id: deployment
+      uses: actions/deploy-pages@v4
