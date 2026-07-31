@@ -44,6 +44,11 @@ load_dotenv()
 BALANCE_HASH_FILE = 'balance_hash.txt'
 
 
+def is_stats_only() -> bool:
+	"""是否为仅采集用量统计的运行（不执行签到、不发通知）。"""
+	return os.getenv('STATS_ONLY', '').strip().lower() == 'true'
+
+
 def load_balance_hash():
 	"""加载余额hash"""
 	try:
@@ -456,6 +461,10 @@ def run_check_in_requests(
 			elif user_info_before:
 				print(user_info_before.get('error', 'Unknown error'))
 
+			if is_stats_only():
+				fetched = bool(user_info_before and user_info_before.get('success'))
+				return fetched, user_info_before, user_info_before
+
 			if provider_config.needs_manual_check_in():
 				success = execute_check_in(client, account_name, provider_config, headers)
 				user_info_after = get_user_info(client, headers, user_info_url)
@@ -504,8 +513,11 @@ async def main():
 
 	print(f'[INFO] Found {len(accounts)} account configurations')
 	stats_enabled = bool(os.getenv('STATS_OUTPUT_PATH', '').strip())
+	stats_only = is_stats_only()
+	if stats_only:
+		print('[INFO] Stats-only mode enabled: skip check-in, notifications and balance hash')
 
-	last_balance_hash = load_balance_hash()
+	last_balance_hash = None if stats_only else load_balance_hash()
 
 	success_count = 0
 	total_count = len(accounts)
@@ -590,7 +602,7 @@ async def main():
 	if stats_output_path:
 		print(f'[STATS] Account statistics snapshot written to {stats_output_path}')
 
-	current_balance_hash = generate_balance_hash(current_balances) if current_balances else None
+	current_balance_hash = generate_balance_hash(current_balances) if current_balances and not stats_only else None
 	if current_balance_hash:
 		if last_balance_hash is None:
 			balance_changed = True
@@ -616,7 +628,7 @@ async def main():
 	if current_balance_hash:
 		save_balance_hash(current_balance_hash)
 
-	if need_notify and notification_content:
+	if not stats_only and need_notify and notification_content:
 		summary = [
 			'[STATS] Check-in result statistics:',
 			f'[SUCCESS] Success: {success_count}/{total_count}',

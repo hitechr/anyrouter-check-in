@@ -117,3 +117,35 @@ def update_history(snapshot: dict, history_path: str | Path, timezone_name: str)
 	path.parent.mkdir(parents=True, exist_ok=True)
 	path.write_text(json.dumps(history, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
 	return history
+
+
+def append_usage_samples(snapshot: dict, usage_dir: str | Path, timezone_name: str) -> Path:
+	"""将快照中各账号的累计用量追加到按本地月份分片的采样序列。"""
+	generated_at = datetime.fromisoformat(snapshot['generated_at'].replace('Z', '+00:00'))
+	local_time = generated_at.astimezone(ZoneInfo(timezone_name))
+	epoch = int(generated_at.timestamp())
+	path = Path(usage_dir) / f'{local_time.strftime("%Y-%m")}.json'
+
+	if path.exists():
+		series = json.loads(path.read_text(encoding='utf-8'))
+	else:
+		series = {'schema_version': SCHEMA_VERSION, 'timezone': timezone_name, 'accounts': {}}
+
+	for account in snapshot['accounts']:
+		usage = account.get('total_usage')
+		if not isinstance(usage, (int, float)):
+			continue
+		entry = series['accounts'].setdefault(
+			account['id'], {'name': account['name'], 'provider': account['provider'], 'samples': []}
+		)
+		entry['name'] = account['name']
+		entry['provider'] = account['provider']
+		samples = [item for item in entry['samples'] if item[0] != epoch]
+		samples.append([epoch, usage])
+		samples.sort(key=lambda item: item[0])
+		entry['samples'] = samples
+
+	series['updated_at'] = snapshot['generated_at']
+	path.parent.mkdir(parents=True, exist_ok=True)
+	path.write_text(json.dumps(series, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
+	return path

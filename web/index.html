@@ -18,6 +18,13 @@
 			--amber: #985b10;
 			--red: #b42318;
 			--red-soft: #fff0ee;
+			--heat-0: #eef1f4;
+			--heat-1: #b7d3f6;
+			--heat-2: #6da7ec;
+			--heat-3: #256abf;
+			--heat-4: #0d366b;
+			--compare-usage: #2a78d6;
+			--compare-balance: #1baf7a;
 		}
 
 		* {
@@ -181,7 +188,7 @@
 
 		table {
 			width: 100%;
-			min-width: 860px;
+			min-width: 980px;
 			border-collapse: collapse;
 		}
 
@@ -315,6 +322,311 @@
 			display: none;
 		}
 
+		.heatmap-controls {
+			display: flex;
+			align-items: center;
+			flex-wrap: wrap;
+			gap: 10px;
+		}
+
+		.heatmap-controls select {
+			min-height: 30px;
+			padding: 3px 8px;
+			border: 1px solid var(--border);
+			border-radius: 6px;
+			background: var(--surface);
+			color: var(--text);
+			font: inherit;
+			font-size: 12px;
+		}
+
+		.view-toggle {
+			display: inline-flex;
+			overflow: hidden;
+			border: 1px solid var(--border);
+			border-radius: 6px;
+		}
+
+		.view-toggle button {
+			min-width: 40px;
+			min-height: 28px;
+			padding: 3px 10px;
+			border: 0;
+			background: var(--surface);
+			color: var(--muted);
+			font: inherit;
+			font-size: 12px;
+			cursor: pointer;
+		}
+
+		.view-toggle button + button {
+			border-left: 1px solid var(--border);
+		}
+
+		.view-toggle button.active {
+			background: var(--text);
+			color: #ffffff;
+		}
+
+		.range-nav {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+		}
+
+		.range-nav button {
+			width: 28px;
+			height: 28px;
+			border: 1px solid var(--border);
+			border-radius: 6px;
+			background: var(--surface);
+			color: var(--text);
+			font-size: 14px;
+			cursor: pointer;
+		}
+
+		.range-nav span {
+			min-width: 150px;
+			color: var(--muted);
+			font-size: 12px;
+			font-variant-numeric: tabular-nums;
+			text-align: center;
+			white-space: nowrap;
+		}
+
+		.heatmap-shell {
+			padding: 18px;
+		}
+
+		.heatmap-shell .state {
+			min-height: 150px;
+			padding: 20px;
+		}
+
+		.heat-grid {
+			display: grid;
+			align-items: center;
+			justify-content: start;
+			gap: 3px;
+			--cell: 22px;
+		}
+
+		.heat-cell {
+			width: var(--cell);
+			height: var(--cell);
+			border-radius: 4px;
+			background: var(--heat-0);
+		}
+
+		.heat-cell[data-tip]:hover {
+			outline: 1.5px solid rgba(23, 32, 38, 0.55);
+		}
+
+		.heat-cell.lvl-1 {
+			background: var(--heat-1);
+		}
+
+		.heat-cell.lvl-2 {
+			background: var(--heat-2);
+		}
+
+		.heat-cell.lvl-3 {
+			background: var(--heat-3);
+		}
+
+		.heat-cell.lvl-4 {
+			background: var(--heat-4);
+		}
+
+		.heat-cell.blank {
+			visibility: hidden;
+		}
+
+		.heat-label {
+			color: var(--muted);
+			font-size: 10px;
+			line-height: 1;
+			white-space: nowrap;
+		}
+
+		.heat-label.row {
+			padding-right: 6px;
+			text-align: right;
+		}
+
+		.heat-label.col {
+			padding-bottom: 2px;
+			text-align: center;
+		}
+
+		.heatmap-footer {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			flex-wrap: wrap;
+			gap: 8px;
+			margin-top: 14px;
+			color: var(--muted);
+			font-size: 12px;
+		}
+
+		#heatmap-total {
+			color: var(--text);
+			font-weight: 650;
+			font-variant-numeric: tabular-nums;
+		}
+
+		.heat-swatch {
+			display: inline-block;
+			width: 11px;
+			height: 11px;
+			margin: 0 2px;
+			border-radius: 3px;
+			background: var(--heat-0);
+			vertical-align: -1px;
+		}
+
+		.heat-swatch.lvl-1 {
+			background: var(--heat-1);
+		}
+
+		.heat-swatch.lvl-2 {
+			background: var(--heat-2);
+		}
+
+		.heat-swatch.lvl-3 {
+			background: var(--heat-3);
+		}
+
+		.heat-swatch.lvl-4 {
+			background: var(--heat-4);
+		}
+
+		.heatmap-tooltip {
+			position: fixed;
+			z-index: 10;
+			padding: 6px 9px;
+			border-radius: 6px;
+			background: var(--text);
+			color: #ffffff;
+			font-size: 12px;
+			pointer-events: none;
+			white-space: nowrap;
+		}
+
+		.usage-cell {
+			width: 150px;
+		}
+
+		.usage-wrap {
+			display: inline-flex;
+			align-items: center;
+			justify-content: flex-end;
+			gap: 8px;
+		}
+
+		.usage-track {
+			width: 90px;
+			height: 6px;
+			overflow: hidden;
+			border-radius: 999px;
+			background: var(--heat-0);
+		}
+
+		.usage-fill {
+			height: 100%;
+			border-radius: 999px;
+			background: var(--compare-usage);
+		}
+
+		.usage-percent {
+			min-width: 34px;
+			color: var(--muted);
+			font-size: 12px;
+			font-variant-numeric: tabular-nums;
+		}
+
+		.legend-swatch {
+			display: inline-block;
+			width: 10px;
+			height: 10px;
+			margin: 0 4px 0 12px;
+			border-radius: 3px;
+			vertical-align: -1px;
+		}
+
+		.legend-swatch.balance {
+			background: var(--compare-balance);
+		}
+
+		.legend-swatch.usage {
+			background: var(--compare-usage);
+		}
+
+		.compare-shell {
+			padding: 16px 22px;
+		}
+
+		.compare-row {
+			display: grid;
+			grid-template-columns: 150px minmax(0, 1fr);
+			align-items: center;
+			gap: 14px;
+			padding: 10px 0;
+		}
+
+		.compare-name {
+			overflow: hidden;
+			font-weight: 650;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+		.compare-bars {
+			display: grid;
+			gap: 5px;
+		}
+
+		.compare-bar-area {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			min-width: 0;
+		}
+
+		.compare-bar {
+			flex-shrink: 0;
+			height: 10px;
+			border-radius: 0 4px 4px 0;
+		}
+
+		.compare-bar.balance {
+			background: var(--compare-balance);
+		}
+
+		.compare-bar.usage {
+			background: var(--compare-usage);
+		}
+
+		.compare-value {
+			color: var(--muted);
+			font-size: 12px;
+			font-variant-numeric: tabular-nums;
+			white-space: nowrap;
+		}
+
+		@media (max-width: 820px) {
+			.heat-grid {
+				--cell: 18px;
+			}
+		}
+
+		@media (max-width: 520px) {
+			.heat-grid {
+				--cell: 14px;
+			}
+		}
+
 		@media (max-width: 820px) {
 			.topbar-inner,
 			main {
@@ -428,6 +740,7 @@
 							<th scope="col">状态</th>
 							<th scope="col">当前余额</th>
 							<th scope="col">累计使用</th>
+							<th scope="col">使用率</th>
 							<th scope="col">今日使用</th>
 							<th scope="col">30 天趋势</th>
 						</tr>
@@ -435,7 +748,55 @@
 					<tbody id="accounts-body"></tbody>
 				</table>
 			</div>
+		<section class="section" aria-labelledby="compare-title">
+			<div class="section-header">
+				<h2 id="compare-title">余额 &amp; 累计消耗对比</h2>
+				<span class="section-meta">
+					<i class="legend-swatch balance" aria-hidden="true"></i>余额
+					<i class="legend-swatch usage" aria-hidden="true"></i>累计消耗
+				</span>
+			</div>
+			<div class="table-shell compare-shell">
+				<div id="compare-chart"></div>
+			</div>
 		</section>
+
+		<section class="section" aria-labelledby="heatmap-title">
+			<div class="section-header">
+				<div>
+					<h2 id="heatmap-title">用量热力图</h2>
+					<span class="section-meta">每 10 分钟采样 · 北京时间</span>
+				</div>
+				<div class="heatmap-controls">
+					<select id="heatmap-account" aria-label="选择账户">
+						<option value="all">全部账户</option>
+					</select>
+					<div class="view-toggle" role="group" aria-label="视图切换">
+						<button type="button" data-view="day" class="active">日</button>
+						<button type="button" data-view="week">周</button>
+						<button type="button" data-view="month">月</button>
+					</div>
+					<div class="range-nav">
+						<button type="button" id="range-prev" aria-label="上一段">‹</button>
+						<span id="range-label">--</span>
+						<button type="button" id="range-next" aria-label="下一段">›</button>
+					</div>
+				</div>
+			</div>
+			<div class="table-shell heatmap-shell">
+				<div class="state" id="heatmap-state">正在读取采样数据</div>
+				<div class="hidden" id="heatmap-body">
+					<div class="heat-grid" id="heatmap-grid"></div>
+					<div class="heatmap-footer">
+						<span id="heatmap-total">--</span>
+						<span>少
+							<i class="heat-swatch"></i><i class="heat-swatch lvl-1"></i><i class="heat-swatch lvl-2"></i><i class="heat-swatch lvl-3"></i><i class="heat-swatch lvl-4"></i>
+						多</span>
+					</div>
+				</div>
+			</div>
+		</section>
+		<div class="heatmap-tooltip hidden" id="heatmap-tooltip"></div>
 	</main>
 
 	<script>
@@ -537,6 +898,31 @@
 			totalCell.className = 'amount';
 			totalCell.textContent = formatMoney(account.total_usage);
 
+			const usageCell = document.createElement('td');
+			usageCell.className = 'usage-cell';
+			const grantTotal = isNumber(account.balance) && isNumber(account.total_usage)
+				? account.balance + account.total_usage
+				: null;
+			if (grantTotal && grantTotal > 0) {
+				const rate = account.total_usage / grantTotal;
+				const wrap = document.createElement('div');
+				wrap.className = 'usage-wrap';
+				wrap.title = `使用率 ${(rate * 100).toFixed(1)}%`;
+				const track = document.createElement('div');
+				track.className = 'usage-track';
+				const fill = document.createElement('div');
+				fill.className = 'usage-fill';
+				fill.style.width = `${Math.min(100, Math.max(0, rate * 100)).toFixed(1)}%`;
+				track.appendChild(fill);
+				const percent = document.createElement('span');
+				percent.className = 'usage-percent';
+				percent.textContent = `${Math.round(rate * 100)}%`;
+				wrap.append(track, percent);
+				usageCell.appendChild(wrap);
+			} else {
+				usageCell.textContent = '--';
+			}
+
 			const todayCell = document.createElement('td');
 			todayCell.className = 'amount today';
 			todayCell.textContent = formatMoney(today);
@@ -545,8 +931,41 @@
 			sparklineCell.className = 'sparkline-cell';
 			sparklineCell.appendChild(createSparkline(usagePoints));
 
-			row.append(identityCell, statusCell, balanceCell, totalCell, todayCell, sparklineCell);
+			row.append(identityCell, statusCell, balanceCell, totalCell, usageCell, todayCell, sparklineCell);
 			return { row, today };
+		}
+
+		function renderCompareChart(accounts) {
+			const container = byId('compare-chart');
+			container.textContent = '';
+			const values = accounts.flatMap((account) => [account.balance, account.total_usage]).filter(isNumber);
+			const max = values.length ? Math.max(...values) : 0;
+			for (const account of accounts) {
+				const row = document.createElement('div');
+				row.className = 'compare-row';
+				const name = document.createElement('div');
+				name.className = 'compare-name';
+				name.textContent = account.name;
+				name.title = account.name;
+				const bars = document.createElement('div');
+				bars.className = 'compare-bars';
+				for (const [field, label, kind] of [['balance', '余额', 'balance'], ['total_usage', '累计消耗', 'usage']]) {
+					const area = document.createElement('div');
+					area.className = 'compare-bar-area';
+					const value = account[field];
+					const bar = document.createElement('div');
+					bar.className = `compare-bar ${kind}`;
+					bar.style.width = isNumber(value) && max > 0 ? `${((value / max) * 78).toFixed(2)}%` : '0%';
+					const text = document.createElement('span');
+					text.className = 'compare-value';
+					text.textContent = formatMoney(value);
+					area.setAttribute('aria-label', `${account.name} ${label} ${formatMoney(value)}`);
+					area.append(bar, text);
+					bars.appendChild(area);
+				}
+				row.append(name, bars);
+				container.appendChild(row);
+			}
 		}
 
 		function render(history) {
@@ -572,6 +991,7 @@
 			const successful = accounts.filter((account) => account.checkin_success).length;
 			const totalBalance = accounts.reduce((sum, account) => sum + (isNumber(account.balance) ? account.balance : 0), 0);
 			const totalUsage = accounts.reduce((sum, account) => sum + (isNumber(account.total_usage) ? account.total_usage : 0), 0);
+			renderCompareChart(accounts);
 
 			byId('account-count').textContent = String(accounts.length);
 			byId('account-status').textContent = `${successful} 个正常 / ${accounts.length - successful} 个失败`;
@@ -603,6 +1023,309 @@
 			})
 			.then(render)
 			.catch(showError);
+
+		// ---- 用量热力图（10 分钟采样） ----
+		const TZ_OFFSET_SECONDS = 8 * 3600;
+		const MAX_SAMPLE_GAP_SECONDS = 1800;
+		const WEEKDAY_LABELS = ['一', '二', '三', '四', '五', '六', '日'];
+		const TOTAL_LABELS = { day: '本日合计', week: '本周合计', month: '本月合计' };
+
+		const heatmapState = {
+			view: 'day',
+			anchor: Math.floor((Math.floor(Date.now() / 1000) + TZ_OFFSET_SECONDS) / 86400),
+			account: 'all',
+			shards: new Map()
+		};
+		let heatmapRenderSeq = 0;
+
+		const pad2 = (value) => String(value).padStart(2, '0');
+		const dateOfDayNum = (dayNum) => new Date(dayNum * 86400000);
+		const dayNumText = (dayNum) => {
+			const date = dateOfDayNum(dayNum);
+			return `${date.getUTCFullYear()}-${pad2(date.getUTCMonth() + 1)}-${pad2(date.getUTCDate())}`;
+		};
+		const monthKeyOf = (dayNum) => dayNumText(dayNum).slice(0, 7);
+		const monthDayText = (dayNum) => {
+			const date = dateOfDayNum(dayNum);
+			return `${date.getUTCMonth() + 1}月${date.getUTCDate()}日`;
+		};
+
+		function usageDataBase() {
+			const owner = location.hostname.match(/^([^.]+)\.github\.io$/);
+			const repo = location.pathname.split('/').filter(Boolean)[0];
+			if (owner && repo) return `https://raw.githubusercontent.com/${owner[1]}/${repo}/stats-data/data/`;
+			return './data/';
+		}
+
+		function loadShard(monthKey) {
+			if (!heatmapState.shards.has(monthKey)) {
+				const request = fetch(`${usageDataBase()}usage/${monthKey}.json`, { cache: 'no-store' })
+					.then((response) => response.ok ? response.json() : null)
+					.catch(() => null);
+				heatmapState.shards.set(monthKey, request);
+			}
+			return heatmapState.shards.get(monthKey);
+		}
+
+		function mergedAccounts(shards) {
+			const merged = new Map();
+			for (const shard of shards) {
+				if (!shard || !shard.accounts) continue;
+				for (const [id, entry] of Object.entries(shard.accounts)) {
+					const current = merged.get(id) || { name: entry.name, samples: [] };
+					current.name = entry.name;
+					current.samples = current.samples.concat(Array.isArray(entry.samples) ? entry.samples : []);
+					merged.set(id, current);
+				}
+			}
+			for (const entry of merged.values()) entry.samples.sort((a, b) => a[0] - b[0]);
+			return merged;
+		}
+
+		function usageDeltas(samples) {
+			const deltas = [];
+			for (let i = 1; i < samples.length; i++) {
+				const gap = samples[i][0] - samples[i - 1][0];
+				const diff = samples[i][1] - samples[i - 1][1];
+				if (gap > 0 && gap <= MAX_SAMPLE_GAP_SECONDS && diff >= 0) deltas.push([samples[i][0], diff]);
+			}
+			return deltas;
+		}
+
+		function heatmapRange() {
+			const anchor = heatmapState.anchor;
+			if (heatmapState.view === 'day') return [anchor, anchor];
+			if (heatmapState.view === 'week') {
+				const start = anchor - ((anchor + 3) % 7);
+				return [start, start + 6];
+			}
+			const date = dateOfDayNum(anchor);
+			return [
+				Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), 1) / 86400000,
+				Date.UTC(date.getUTCFullYear(), date.getUTCMonth() + 1, 0) / 86400000
+			];
+		}
+
+		function heatmapRangeLabel(range) {
+			if (heatmapState.view === 'day') return `${dayNumText(range[0])} · 周${WEEKDAY_LABELS[(range[0] + 3) % 7]}`;
+			if (heatmapState.view === 'week') return `${dayNumText(range[0])} ~ ${dayNumText(range[1])}`;
+			const date = dateOfDayNum(range[0]);
+			return `${date.getUTCFullYear()} 年 ${date.getUTCMonth() + 1} 月`;
+		}
+
+		function bucketValues(accounts, range) {
+			const values = new Map();
+			for (const entry of accounts) {
+				for (const [epoch, value] of usageDeltas(entry.samples)) {
+					const dayNum = Math.floor((epoch + TZ_OFFSET_SECONDS) / 86400);
+					if (dayNum < range[0] || dayNum > range[1]) continue;
+					const local = new Date((epoch + TZ_OFFSET_SECONDS) * 1000);
+					const key = heatmapState.view === 'day'
+						? local.getUTCHours() * 6 + Math.floor(local.getUTCMinutes() / 10)
+						: (dayNum - range[0]) * 24 + local.getUTCHours();
+					values.set(key, (values.get(key) || 0) + value);
+				}
+			}
+			return values;
+		}
+
+		function dailyTotals(accounts, range) {
+			const totals = new Map();
+			for (const entry of accounts) {
+				const perDay = new Map();
+				for (const [epoch, value] of entry.samples) {
+					const dayNum = Math.floor((epoch + TZ_OFFSET_SECONDS) / 86400);
+					if (dayNum < range[0] || dayNum > range[1] || !isNumber(value)) continue;
+					const bounds = perDay.get(dayNum);
+					if (bounds) {
+						bounds[0] = Math.min(bounds[0], value);
+						bounds[1] = Math.max(bounds[1], value);
+					} else {
+						perDay.set(dayNum, [value, value]);
+					}
+				}
+				for (const [dayNum, bounds] of perDay) {
+					totals.set(dayNum, (totals.get(dayNum) || 0) + (bounds[1] - bounds[0]));
+				}
+			}
+			return totals;
+		}
+
+		function levelThresholds(values) {
+			const sorted = values.filter((value) => value > 0).sort((a, b) => a - b);
+			if (!sorted.length) return null;
+			const quantile = (p) => sorted[Math.min(sorted.length - 1, Math.floor(p * sorted.length))];
+			return [quantile(0.25), quantile(0.5), quantile(0.75)];
+		}
+
+		function levelOf(value, thresholds) {
+			if (!thresholds || !(value > 0)) return 0;
+			if (value <= thresholds[0]) return 1;
+			if (value <= thresholds[1]) return 2;
+			if (value <= thresholds[2]) return 3;
+			return 4;
+		}
+
+		function slotEndText(hour, slot) {
+			const endMinute = (slot + 1) * 10;
+			return endMinute === 60 ? `${pad2((hour + 1) % 24)}:00` : `${pad2(hour)}:${pad2(endMinute)}`;
+		}
+
+		function renderHeatmapGrid(range, values, totals) {
+			const grid = byId('heatmap-grid');
+			grid.textContent = '';
+			const thresholds = levelThresholds([...(heatmapState.view === 'month' ? totals : values).values()]);
+
+			const addLabel = (text, kind) => {
+				const label = document.createElement('span');
+				label.className = `heat-label ${kind}`;
+				label.textContent = text;
+				grid.appendChild(label);
+			};
+			const addCell = (value, tip) => {
+				const cell = document.createElement('div');
+				const level = levelOf(value, thresholds);
+				cell.className = level > 0 ? `heat-cell lvl-${level}` : 'heat-cell';
+				if (tip === null) {
+					cell.classList.add('blank');
+				} else {
+					cell.dataset.tip = tip;
+					cell.setAttribute('aria-label', tip);
+				}
+				grid.appendChild(cell);
+			};
+			const tipFor = (prefix, value) => `${prefix} · ${value === null ? '无数据' : formatMoney(value)}`;
+
+			if (heatmapState.view === 'month') {
+				grid.style.gridTemplateColumns = 'repeat(7, var(--cell))';
+				for (const label of WEEKDAY_LABELS) addLabel(label, 'col');
+				for (let i = 0; i < (range[0] + 3) % 7; i++) addCell(null, null);
+				for (let dayNum = range[0]; dayNum <= range[1]; dayNum++) {
+					const value = totals.has(dayNum) ? totals.get(dayNum) : null;
+					addCell(value, tipFor(monthDayText(dayNum), value));
+				}
+				return;
+			}
+
+			grid.style.gridTemplateColumns = 'auto repeat(24, var(--cell))';
+			addLabel('', 'col');
+			for (let hour = 0; hour < 24; hour++) addLabel(hour % 3 === 0 ? String(hour) : '', 'col');
+			if (heatmapState.view === 'day') {
+				for (let slot = 0; slot < 6; slot++) {
+					addLabel(`:${pad2(slot * 10)}`, 'row');
+					for (let hour = 0; hour < 24; hour++) {
+						const key = hour * 6 + slot;
+						const value = values.has(key) ? values.get(key) : null;
+						const prefix = `${monthDayText(range[0])} ${pad2(hour)}:${pad2(slot * 10)}–${slotEndText(hour, slot)}`;
+						addCell(value, tipFor(prefix, value));
+					}
+				}
+				return;
+			}
+			for (let day = 0; day < 7; day++) {
+				addLabel(`周${WEEKDAY_LABELS[day]}`, 'row');
+				for (let hour = 0; hour < 24; hour++) {
+					const key = day * 24 + hour;
+					const value = values.has(key) ? values.get(key) : null;
+					const prefix = `${monthDayText(range[0] + day)} ${pad2(hour)}:00–${pad2((hour + 1) % 24)}:00`;
+					addCell(value, tipFor(prefix, value));
+				}
+			}
+		}
+
+		function populateAccountOptions(merged) {
+			const select = byId('heatmap-account');
+			const previous = heatmapState.account;
+			while (select.options.length > 1) select.remove(1);
+			const entries = [...merged.entries()].sort((a, b) => a[1].name.localeCompare(b[1].name, 'zh-CN'));
+			for (const [id, entry] of entries) {
+				const option = document.createElement('option');
+				option.value = id;
+				option.textContent = entry.name;
+				select.appendChild(option);
+			}
+			select.value = merged.has(previous) ? previous : 'all';
+			heatmapState.account = select.value;
+		}
+
+		async function renderHeatmap() {
+			const seq = ++heatmapRenderSeq;
+			const range = heatmapRange();
+			byId('range-label').textContent = heatmapRangeLabel(range);
+			const monthKeys = [...new Set([monthKeyOf(range[0]), monthKeyOf(range[1])])];
+			const shards = await Promise.all(monthKeys.map(loadShard));
+			if (seq !== heatmapRenderSeq) return;
+
+			const merged = mergedAccounts(shards);
+			populateAccountOptions(merged);
+			const state = byId('heatmap-state');
+			if (!merged.size) {
+				byId('heatmap-body').classList.add('hidden');
+				state.textContent = '采样数据积累中，请稍后查看';
+				state.classList.remove('hidden');
+				return;
+			}
+
+			const accounts = heatmapState.account === 'all'
+				? [...merged.values()]
+				: [merged.get(heatmapState.account)].filter(Boolean);
+			const values = heatmapState.view === 'month' ? new Map() : bucketValues(accounts, range);
+			const totals = heatmapState.view === 'month' ? dailyTotals(accounts, range) : new Map();
+			renderHeatmapGrid(range, values, totals);
+
+			const covered = [...(heatmapState.view === 'month' ? totals : values).values()];
+			const total = covered.length ? covered.reduce((sum, value) => sum + value, 0) : null;
+			byId('heatmap-total').textContent = `${TOTAL_LABELS[heatmapState.view]} ${formatMoney(total)}`;
+			state.classList.add('hidden');
+			byId('heatmap-body').classList.remove('hidden');
+		}
+
+		function shiftHeatmapRange(step) {
+			if (heatmapState.view === 'day') {
+				heatmapState.anchor += step;
+			} else if (heatmapState.view === 'week') {
+				heatmapState.anchor += step * 7;
+			} else {
+				const date = dateOfDayNum(heatmapState.anchor);
+				heatmapState.anchor = Date.UTC(date.getUTCFullYear(), date.getUTCMonth() + step, 1) / 86400000;
+			}
+			renderHeatmap();
+		}
+
+		byId('heatmap-account').addEventListener('change', (event) => {
+			heatmapState.account = event.target.value;
+			renderHeatmap();
+		});
+		for (const button of document.querySelectorAll('.view-toggle button')) {
+			button.addEventListener('click', () => {
+				if (heatmapState.view === button.dataset.view) return;
+				heatmapState.view = button.dataset.view;
+				for (const other of document.querySelectorAll('.view-toggle button')) {
+					other.classList.toggle('active', other === button);
+				}
+				renderHeatmap();
+			});
+		}
+		byId('range-prev').addEventListener('click', () => shiftHeatmapRange(-1));
+		byId('range-next').addEventListener('click', () => shiftHeatmapRange(1));
+
+		const heatmapTooltip = byId('heatmap-tooltip');
+		byId('heatmap-grid').addEventListener('pointerover', (event) => {
+			const cell = event.target.closest('.heat-cell[data-tip]');
+			if (!cell) return;
+			heatmapTooltip.textContent = cell.dataset.tip;
+			heatmapTooltip.classList.remove('hidden');
+			const rect = cell.getBoundingClientRect();
+			const left = Math.min(
+				Math.max(rect.left + rect.width / 2 - heatmapTooltip.offsetWidth / 2, 8),
+				window.innerWidth - heatmapTooltip.offsetWidth - 8
+			);
+			heatmapTooltip.style.left = `${left}px`;
+			heatmapTooltip.style.top = `${rect.top - heatmapTooltip.offsetHeight - 8}px`;
+		});
+		byId('heatmap-grid').addEventListener('pointerout', () => heatmapTooltip.classList.add('hidden'));
+
+		renderHeatmap();
 	</script>
 </body>
 </html>

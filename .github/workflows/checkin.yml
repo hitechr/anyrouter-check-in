@@ -1,7 +1,9 @@
 name: AnyRouter 自动签到
 on:
   schedule:
-    - cron: '0 1,2,3,4,5,6,7,8,9,10,11,12 * * *'
+    - cron: '0 1-12 * * *'
+    - cron: '10,20,30,40,50 1-12 * * *'
+    - cron: '0 13 * * *'
     - cron: '5 16 * * *'
   workflow_dispatch:
     inputs:
@@ -17,7 +19,7 @@ concurrency:
 
 jobs:
   checkin:
-    if: github.event_name != 'schedule' || github.event.schedule != '5 16 * * *' || vars.ENABLE_STATS_PAGE == 'true'
+    if: github.event_name != 'schedule' || github.event.schedule == '0 1-12 * * *' || vars.ENABLE_STATS_PAGE == 'true'
     runs-on: ubuntu-latest
     environment: production
     permissions:
@@ -28,6 +30,7 @@ jobs:
       PYTHONIOENCODING: utf-8
       PYTHONUNBUFFERED: 1
       DEBUG_MODE: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug == 'true' && 'true' || 'false' }}
+      STATS_ONLY: ${{ github.event_name == 'schedule' && (github.event.schedule == '10,20,30,40,50 1-12 * * *' || github.event.schedule == '0 13 * * *') && 'true' || 'false' }}
     steps:
     - uses: actions/checkout@v6
 
@@ -101,6 +104,7 @@ jobs:
     - name: 执行签到
       env:
         DEBUG_MODE: ${{ env.DEBUG_MODE }}
+        STATS_ONLY: ${{ env.STATS_ONLY }}
         CHECKIN_HEADLESS: false
         CHECKIN_HUMANIZE: true
         CHECKIN_WAIT_TIMEOUT_MS: 120000
@@ -142,7 +146,8 @@ jobs:
           --snapshot .tmp/stats-snapshot.json \
           --page web/index.html \
           --output .tmp/stats-data \
-          --timezone Asia/Shanghai
+          --timezone Asia/Shanghai \
+          --mode ${{ env.STATS_ONLY == 'true' && 'sample' || 'checkin' }}
 
         git -C .tmp/stats-data config user.name "github-actions[bot]"
         git -C .tmp/stats-data config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -158,7 +163,7 @@ jobs:
 
     - name: 上传统计页面
       id: upload-stats
-      if: always() && steps.build-stats.outcome == 'success'
+      if: always() && steps.build-stats.outcome == 'success' && env.STATS_ONLY != 'true'
       uses: actions/upload-pages-artifact@v4
       with:
         path: .tmp/site

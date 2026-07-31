@@ -6,11 +6,17 @@ import json
 import shutil
 from pathlib import Path
 
-from utils.stats import update_history
+from utils.stats import append_usage_samples, update_history
 
 
-def build_site(snapshot_path: str | Path, page_path: str | Path, output_dir: str | Path, timezone_name: str) -> None:
-	"""更新统计历史，并复制静态页面到发布目录。"""
+def build_site(
+	snapshot_path: str | Path,
+	page_path: str | Path,
+	output_dir: str | Path,
+	timezone_name: str,
+	mode: str = 'checkin',
+) -> None:
+	"""更新统计历史与用量采样序列，并复制静态页面到发布目录。"""
 	snapshot_file = Path(snapshot_path)
 	page_file = Path(page_path)
 	output = Path(output_dir)
@@ -22,8 +28,10 @@ def build_site(snapshot_path: str | Path, page_path: str | Path, output_dir: str
 		json.dumps(snapshot, ensure_ascii=False, indent=2) + '\n',
 		encoding='utf-8',
 	)
-	update_history(snapshot, data_dir / 'history.json', timezone_name)
-	shutil.copyfile(page_file, output / 'index.html')
+	append_usage_samples(snapshot, data_dir / 'usage', timezone_name)
+	if mode == 'checkin':
+		update_history(snapshot, data_dir / 'history.json', timezone_name)
+		shutil.copyfile(page_file, output / 'index.html')
 
 
 def parse_args() -> argparse.Namespace:
@@ -32,12 +40,18 @@ def parse_args() -> argparse.Namespace:
 	parser.add_argument('--page', required=True, help='静态页面源文件')
 	parser.add_argument('--output', required=True, help='站点输出目录')
 	parser.add_argument('--timezone', default='Asia/Shanghai', help='每日统计使用的 IANA 时区')
+	parser.add_argument(
+		'--mode',
+		choices=['checkin', 'sample'],
+		default='checkin',
+		help='checkin=完整构建站点, sample=仅追加用量采样数据',
+	)
 	return parser.parse_args()
 
 
 def main() -> None:
 	args = parse_args()
-	build_site(args.snapshot, args.page, args.output, args.timezone)
+	build_site(args.snapshot, args.page, args.output, args.timezone, args.mode)
 
 
 if __name__ == '__main__':

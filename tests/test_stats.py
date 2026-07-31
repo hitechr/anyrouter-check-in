@@ -8,6 +8,7 @@ import pytest
 import checkin
 from utils.config import load_accounts_config
 from utils.stats import (
+	append_usage_samples,
 	build_account_stat,
 	make_account_id,
 	update_history,
@@ -138,6 +139,47 @@ def test_update_history_keeps_snapshots_for_different_local_days(tmp_path):
 	assert result['snapshots'][1]['opening_accounts'][0]['total_usage'] == 20.0
 
 
+def test_append_usage_samples_creates_compact_monthly_shard(tmp_path):
+	snapshot = _snapshot('2026-07-30T02:10:00Z', total_usage=8.34)
+
+	path = append_usage_samples(snapshot, tmp_path / 'usage', 'Asia/Shanghai')
+
+	assert path == tmp_path / 'usage' / '2026-07.json'
+	series = json.loads(path.read_text(encoding='utf-8'))
+	assert series['timezone'] == 'Asia/Shanghai'
+	assert series['updated_at'] == '2026-07-30T02:10:00Z'
+	assert series['accounts']['account-id']['name'] == 'Primary'
+	assert series['accounts']['account-id']['provider'] == 'anyrouter'
+	assert series['accounts']['account-id']['samples'] == [[1785377400, 8.34]]
+	assert '\n  ' not in path.read_text(encoding='utf-8')
+
+
+def test_append_usage_samples_dedupes_same_epoch_and_sorts(tmp_path):
+	usage_dir = tmp_path / 'usage'
+
+	append_usage_samples(_snapshot('2026-07-30T02:10:00Z', total_usage=8.0), usage_dir, 'Asia/Shanghai')
+	append_usage_samples(_snapshot('2026-07-30T02:00:00Z', total_usage=7.0), usage_dir, 'Asia/Shanghai')
+	append_usage_samples(_snapshot('2026-07-30T02:10:00Z', total_usage=9.0), usage_dir, 'Asia/Shanghai')
+
+	series = json.loads((usage_dir / '2026-07.json').read_text(encoding='utf-8'))
+	assert series['accounts']['account-id']['samples'] == [[1785376800, 7.0], [1785377400, 9.0]]
+
+
+def test_append_usage_samples_skips_accounts_without_usage(tmp_path):
+	snapshot = _snapshot('2026-07-30T02:10:00Z')
+	snapshot['accounts'][0]['total_usage'] = None
+
+	path = append_usage_samples(snapshot, tmp_path / 'usage', 'Asia/Shanghai')
+
+	assert json.loads(path.read_text(encoding='utf-8'))['accounts'] == {}
+
+
+def test_append_usage_samples_shards_by_local_month(tmp_path):
+	path = append_usage_samples(_snapshot('2026-07-31T16:30:00Z'), tmp_path / 'usage', 'Asia/Shanghai')
+
+	assert path.name == '2026-08.json'
+
+
 def test_build_stats_site_creates_page_and_data_files(tmp_path):
 	from scripts.build_stats_site import build_site
 
@@ -157,27 +199,70 @@ def test_build_stats_site_creates_page_and_data_files(tmp_path):
 	assert history['snapshots'][0]['date'] == '2026-07-30'
 
 
+def test_build_site_sample_mode_appends_usage_without_history_or_page(tmp_path):
+	from scripts.build_stats_site import build_site
+
+	snapshot_path = tmp_path / 'stats-snapshot.json'
+	page_path = tmp_path / 'index-source.html'
+	output_dir = tmp_path / 'site'
+	snapshot_path.write_text(json.dumps(_snapshot('2026-07-30T02:10:00Z')), encoding='utf-8')
+	page_path.write_text('<!doctype html>', encoding='utf-8')
+
+	build_site(snapshot_path, page_path, output_dir, 'Asia/Shanghai', mode='sample')
+
+	assert (output_dir / 'data' / 'usage' / '2026-07.json').exists()
+	assert (output_dir / 'data' / 'latest.json').exists()
+	assert not (output_dir / 'data' / 'history.json').exists()
+	assert not (output_dir / 'index.html').exists()
+
+
+def test_build_site_checkin_mode_also_appends_usage(tmp_path):
+	from scripts.build_stats_site import build_site
+
+	snapshot_path = tmp_path / 'stats-snapshot.json'
+	page_path = tmp_path / 'index-source.html'
+	output_dir = tmp_path / 'site'
+	snapshot_path.write_text(json.dumps(_snapshot('2026-07-30T02:10:00Z')), encoding='utf-8')
+	page_path.write_text('<!doctype html>', encoding='utf-8')
+
+	build_site(snapshot_path, page_path, output_dir, 'Asia/Shanghai')
+
+	assert (output_dir / 'data' / 'usage' / '2026-07.json').exists()
+	assert (output_dir / 'data' / 'history.json').exists()
+	assert (output_dir / 'index.html').exists()
+
+
 def test_dashboard_is_dependency_free_and_reads_generated_history():
 	source = Path('web/index.html').read_text(encoding='utf-8')
 
 	assert "fetch('./data/history.json'" in source
-	assert 'https://' not in source
+	assert '<script src=' not in source
+	assert '<link' not in source
 	assert '当前余额' in source
 	assert '累计使用' in source
 	assert '今日使用' in source
 	assert 'opening_accounts' in source
 	assert 'closing_accounts' in source
 	assert 'latestPoint && latestPoint.date === latestDate' in source
+	assert '用量热力图' in source
+	assert 'stats-data/data/' in source
+	assert 'usage/' in source
 
 
 def test_workflow_invokes_stats_builder_as_module():
 	workflow = Path('.github/workflows/checkin.yml').read_text(encoding='utf-8')
 
 	assert 'uv run python -m scripts.build_stats_site' in workflow
+	assert "cron: '0 1-12 * * *'" in workflow
+	assert "cron: '10,20,30,40,50 1-12 * * *'" in workflow
+	assert "cron: '0 13 * * *'" in workflow
 	assert "cron: '5 16 * * *'" in workflow
+	assert "github.event.schedule == '0 1-12 * * *' || vars.ENABLE_STATS_PAGE == 'true'" in workflow
+	assert 'STATS_ONLY:' in workflow
+	assert "--mode ${{ env.STATS_ONLY == 'true' && 'sample' || 'checkin' }}" in workflow
+	assert "env.STATS_ONLY != 'true'" in workflow
 	assert "if: always() && vars.ENABLE_STATS_PAGE == 'true'" in workflow
 	assert "stats-ready: ${{ steps.upload-stats.outcome == 'success' }}" in workflow
-	assert "github.event.schedule != '5 16 * * *' || vars.ENABLE_STATS_PAGE == 'true'" in workflow
 
 
 def test_stats_id_is_loaded_when_statistics_are_enabled(monkeypatch, tmp_path):
@@ -216,6 +301,76 @@ def test_statistics_require_unique_stats_ids(monkeypatch, tmp_path, accounts):
 	monkeypatch.setenv('ANYROUTER_ACCOUNTS', json.dumps(accounts))
 
 	assert load_accounts_config() is None
+
+
+def test_run_check_in_requests_stats_only_skips_check_in_post(monkeypatch):
+	monkeypatch.setenv('STATS_ONLY', 'true')
+	info = {'success': True, 'quota': 25.0, 'used_quota': 8.0, 'display': 'ok'}
+
+	class FakeClient:
+		def __init__(self, **_kwargs):
+			self.cookies = SimpleNamespace(update=lambda _cookies: None)
+
+		def __enter__(self):
+			return self
+
+		def __exit__(self, *_args):
+			return False
+
+	def must_not_check_in(*_args, **_kwargs):
+		raise AssertionError('execute_check_in must not run in stats-only mode')
+
+	monkeypatch.setattr(checkin.httpx, 'Client', FakeClient)
+	monkeypatch.setattr(checkin, 'get_user_info', lambda *_args, **_kwargs: info)
+	monkeypatch.setattr(checkin, 'execute_check_in', must_not_check_in)
+	provider = SimpleNamespace(
+		domain='https://example.com',
+		user_info_path='/api/user/self',
+		api_user_key='new-api-user',
+		needs_manual_check_in=lambda: True,
+	)
+	account = SimpleNamespace(api_user='10001')
+
+	success, before, after = checkin.run_check_in_requests({'session': 'x'}, account, 'Primary', provider)
+
+	assert success is True
+	assert before == info
+	assert after == info
+
+
+@pytest.mark.asyncio
+async def test_main_stats_only_skips_notification_and_balance_hash(monkeypatch, tmp_path):
+	output_path = tmp_path / 'stats-snapshot.json'
+	account = SimpleNamespace(
+		provider='anyrouter',
+		stats_id='primary',
+		get_display_name=lambda _index: 'Primary',
+	)
+	pushed = []
+	saved_hashes = []
+
+	async def fake_check_in_account(_account, _index, _config):
+		info = {'success': True, 'quota': 25.0, 'used_quota': 8.0}
+		return True, info, info
+
+	monkeypatch.setenv('STATS_ONLY', 'true')
+	monkeypatch.setenv('STATS_OUTPUT_PATH', str(output_path))
+	monkeypatch.setattr(checkin, 'is_debug_enabled', lambda: False)
+	monkeypatch.setattr(checkin.AppConfig, 'load_from_env', lambda: SimpleNamespace(providers={}))
+	monkeypatch.setattr(checkin, 'load_accounts_config', lambda: [account])
+	monkeypatch.setattr(checkin, 'check_in_account', fake_check_in_account)
+	monkeypatch.setattr(checkin, 'load_balance_hash', lambda: 'old-hash')
+	monkeypatch.setattr(checkin, 'generate_balance_hash', lambda _balances: 'changed-hash')
+	monkeypatch.setattr(checkin, 'save_balance_hash', saved_hashes.append)
+	monkeypatch.setattr(checkin.notify, 'push_message', lambda *args, **kwargs: pushed.append(args))
+
+	with pytest.raises(SystemExit) as exit_info:
+		await checkin.main()
+
+	assert exit_info.value.code == 0
+	assert pushed == []
+	assert saved_hashes == []
+	assert json.loads(output_path.read_text(encoding='utf-8'))['accounts'][0]['checkin_success'] is True
 
 
 @pytest.mark.asyncio
