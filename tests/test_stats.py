@@ -253,16 +253,20 @@ def test_workflow_invokes_stats_builder_as_module():
 	workflow = Path('.github/workflows/checkin.yml').read_text(encoding='utf-8')
 
 	assert 'uv run python -m scripts.build_stats_site' in workflow
-	assert "cron: '0 1-12 * * *'" in workflow
-	assert "cron: '10,20,30,40,50 1-12 * * *'" in workflow
-	assert "cron: '0 13 * * *'" in workflow
-	assert "cron: '5 16 * * *'" in workflow
-	assert "github.event.schedule == '0 1-12 * * *' || vars.ENABLE_STATS_PAGE == 'true'" in workflow
-	assert 'STATS_ONLY:' in workflow
-	assert "--mode ${{ env.STATS_ONLY == 'true' && 'sample' || 'checkin' }}" in workflow
-	assert "env.STATS_ONLY != 'true'" in workflow
 	assert "if: always() && vars.ENABLE_STATS_PAGE == 'true'" in workflow
 	assert "stats-ready: ${{ steps.upload-stats.outcome == 'success' }}" in workflow
+
+
+def test_workflow_runs_full_checkin_every_30_minutes_between_9_and_21_beijing():
+	workflow = Path('.github/workflows/checkin.yml').read_text(encoding='utf-8')
+
+	assert workflow.count('- cron:') == 2
+	assert "cron: '0,30 1-12 * * *'" in workflow
+	assert "cron: '0 13 * * *'" in workflow
+	assert "cron: '5 16 * * *'" not in workflow
+	assert 'github.event.schedule' not in workflow
+	assert 'STATS_ONLY:' not in workflow
+	assert '--mode checkin' in workflow
 
 
 def test_stats_id_is_loaded_when_statistics_are_enabled(monkeypatch, tmp_path):
