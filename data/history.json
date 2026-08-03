@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "timezone": "Asia/Shanghai",
-  "updated_at": "2026-08-02T12:34:53Z",
+  "updated_at": "2026-08-03T04:25:49Z",
   "snapshots": [
     {
       "date": "2026-07-30",
@@ -400,6 +400,115 @@
           "provider": "anyrouter",
           "checkin_success": true,
           "balance": 3838.03,
+          "total_usage": 1311.97
+        }
+      ],
+      "closing_generated_at": "2026-08-03T04:25:49Z",
+      "closing_accounts": [
+        {
+          "id": "957d2b328823b676",
+          "name": "我的主账号",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 3567.01,
+          "total_usage": 5505.86
+        },
+        {
+          "id": "8fa56e1f902a418e",
+          "name": "备用账号2",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 6973.35,
+          "total_usage": 1686.65
+        },
+        {
+          "id": "8213e677ca65f0f7",
+          "name": "备用账号3",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 5846.01,
+          "total_usage": 878.99
+        },
+        {
+          "id": "b0eeb51188d9977b",
+          "name": "备用账号4-oth",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 3863.03,
+          "total_usage": 1311.97
+        }
+      ]
+    },
+    {
+      "date": "2026-08-03",
+      "schema_version": 1,
+      "generated_at": "2026-08-03T04:25:49Z",
+      "accounts": [
+        {
+          "id": "957d2b328823b676",
+          "name": "我的主账号",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 3567.01,
+          "total_usage": 5505.86
+        },
+        {
+          "id": "8fa56e1f902a418e",
+          "name": "备用账号2",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 6973.35,
+          "total_usage": 1686.65
+        },
+        {
+          "id": "8213e677ca65f0f7",
+          "name": "备用账号3",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 5846.01,
+          "total_usage": 878.99
+        },
+        {
+          "id": "b0eeb51188d9977b",
+          "name": "备用账号4-oth",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 3863.03,
+          "total_usage": 1311.97
+        }
+      ],
+      "opening_generated_at": "2026-08-03T04:25:49Z",
+      "opening_accounts": [
+        {
+          "id": "957d2b328823b676",
+          "name": "我的主账号",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 3567.01,
+          "total_usage": 5505.86
+        },
+        {
+          "id": "8fa56e1f902a418e",
+          "name": "备用账号2",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 6973.35,
+          "total_usage": 1686.65
+        },
+        {
+          "id": "8213e677ca65f0f7",
+          "name": "备用账号3",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 5846.01,
+          "total_usage": 878.99
+        },
+        {
+          "id": "b0eeb51188d9977b",
+          "name": "备用账号4-oth",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 3863.03,
           "total_usage": 1311.97
         }
       ]
