@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-04T10:07:56Z",
+  "generated_at": "2026-08-04T12:25:17Z",
   "accounts": [
     {
       "id": "957d2b328823b676",
@@ -30,7 +30,7 @@
       "id": "b0eeb51188d9977b",
       "name": "备用账号4-oth",
       "provider": "anyrouter",
-      "checkin_success": false,
+      "checkin_success": true,
       "balance": 3888.03,
       "total_usage": 1311.97
     }
