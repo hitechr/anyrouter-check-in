@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-05T13:52:01Z",
+  "generated_at": "2026-08-06T04:07:11Z",
   "accounts": [
     {
       "id": "957d2b328823b676",
       "name": "我的主账号",
       "provider": "anyrouter",
       "checkin_success": true,
-      "balance": 3615.44,
+      "balance": 3640.44,
       "total_usage": 5507.42
     },
     {
@@ -15,7 +15,7 @@
       "name": "备用账号2",
       "provider": "anyrouter",
       "checkin_success": true,
-      "balance": 6972.64,
+      "balance": 6997.64,
       "total_usage": 1737.36
     },
     {
@@ -23,7 +23,7 @@
       "name": "备用账号3",
       "provider": "anyrouter",
       "checkin_success": true,
-      "balance": 5835.76,
+      "balance": 5860.76,
       "total_usage": 939.24
     },
     {
@@ -31,7 +31,7 @@
       "name": "备用账号4-oth",
       "provider": "anyrouter",
       "checkin_success": true,
-      "balance": 3912.67,
+      "balance": 3937.67,
       "total_usage": 1312.33
     }
   ]
