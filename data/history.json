@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "timezone": "Asia/Shanghai",
-  "updated_at": "2026-08-08T05:14:13Z",
+  "updated_at": "2026-08-08T06:05:08Z",
   "snapshots": [
     {
       "date": "2026-07-30",
@@ -987,15 +987,15 @@
     {
       "date": "2026-08-08",
       "schema_version": 1,
-      "generated_at": "2026-08-08T05:14:13Z",
+      "generated_at": "2026-08-08T06:05:08Z",
       "accounts": [
         {
           "id": "957d2b328823b676",
           "name": "我的主账号",
           "provider": "anyrouter",
           "checkin_success": true,
-          "balance": 3667.99,
-          "total_usage": 5529.88
+          "balance": 3638.63,
+          "total_usage": 5559.24
         },
         {
           "id": "8fa56e1f902a418e",
