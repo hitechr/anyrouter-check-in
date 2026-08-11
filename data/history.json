@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "timezone": "Asia/Shanghai",
-  "updated_at": "2026-08-10T13:53:22Z",
+  "updated_at": "2026-08-11T00:16:33Z",
   "snapshots": [
     {
       "date": "2026-07-30",
@@ -1273,6 +1273,139 @@
           "checkin_success": true,
           "balance": 4037.67,
           "total_usage": 1312.33
+        }
+      ],
+      "closing_generated_at": "2026-08-11T00:16:33Z",
+      "closing_accounts": [
+        {
+          "id": "c586ef128132428f",
+          "name": "我的主账号",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 3691.53,
+          "total_usage": 5581.34
+        },
+        {
+          "id": "fea4d627ab48e72c",
+          "name": "备用账号2",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 7122.64,
+          "total_usage": 1737.36
+        },
+        {
+          "id": "2f92a9b745c0d19f",
+          "name": "备用账号3",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 5985.76,
+          "total_usage": 939.24
+        },
+        {
+          "id": "b0eeb51188d9977b",
+          "name": "LO-github",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 4062.67,
+          "total_usage": 1312.33
+        },
+        {
+          "id": "a0d1fed253d03d84",
+          "name": "L-hitechrvip",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 1450.0,
+          "total_usage": 0.0
+        }
+      ]
+    },
+    {
+      "date": "2026-08-11",
+      "schema_version": 1,
+      "generated_at": "2026-08-11T00:16:33Z",
+      "accounts": [
+        {
+          "id": "c586ef128132428f",
+          "name": "我的主账号",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 3691.53,
+          "total_usage": 5581.34
+        },
+        {
+          "id": "fea4d627ab48e72c",
+          "name": "备用账号2",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 7122.64,
+          "total_usage": 1737.36
+        },
+        {
+          "id": "2f92a9b745c0d19f",
+          "name": "备用账号3",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 5985.76,
+          "total_usage": 939.24
+        },
+        {
+          "id": "b0eeb51188d9977b",
+          "name": "LO-github",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 4062.67,
+          "total_usage": 1312.33
+        },
+        {
+          "id": "a0d1fed253d03d84",
+          "name": "L-hitechrvip",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 1450.0,
+          "total_usage": 0.0
+        }
+      ],
+      "opening_generated_at": "2026-08-11T00:16:33Z",
+      "opening_accounts": [
+        {
+          "id": "c586ef128132428f",
+          "name": "我的主账号",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 3691.53,
+          "total_usage": 5581.34
+        },
+        {
+          "id": "fea4d627ab48e72c",
+          "name": "备用账号2",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 7122.64,
+          "total_usage": 1737.36
+        },
+        {
+          "id": "2f92a9b745c0d19f",
+          "name": "备用账号3",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 5985.76,
+          "total_usage": 939.24
+        },
+        {
+          "id": "b0eeb51188d9977b",
+          "name": "LO-github",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 4062.67,
+          "total_usage": 1312.33
+        },
+        {
+          "id": "a0d1fed253d03d84",
+          "name": "L-hitechrvip",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 1450.0,
+          "total_usage": 0.0
         }
       ]
     }
