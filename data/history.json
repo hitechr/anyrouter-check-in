@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "timezone": "Asia/Shanghai",
-  "updated_at": "2026-08-12T09:39:29Z",
+  "updated_at": "2026-08-12T10:56:42Z",
   "snapshots": [
     {
       "date": "2026-07-30",
@@ -1455,15 +1455,15 @@
     {
       "date": "2026-08-12",
       "schema_version": 1,
-      "generated_at": "2026-08-12T09:39:29Z",
+      "generated_at": "2026-08-12T10:56:42Z",
       "accounts": [
         {
           "id": "63f4af9ec88277c9",
           "name": "G-hitechr",
           "provider": "anyrouter",
           "checkin_success": true,
-          "balance": 3586.56,
-          "total_usage": 5711.3
+          "balance": 3529.07,
+          "total_usage": 5768.8
         },
         {
           "id": "fea4d627ab48e72c",
