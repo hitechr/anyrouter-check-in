@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-15T00:45:53Z",
+  "generated_at": "2026-08-15T00:54:16Z",
   "accounts": [
     {
       "id": "63f4af9ec88277c9",
@@ -15,8 +15,8 @@
       "name": "G-hapicvip",
       "provider": "anyrouter",
       "checkin_success": true,
-      "balance": 7005.82,
-      "total_usage": 1954.18
+      "balance": 6999.54,
+      "total_usage": 1960.46
     },
     {
       "id": "2f92a9b745c0d19f",
@@ -31,8 +31,8 @@
       "name": "QL-github",
       "provider": "anyrouter",
       "checkin_success": true,
-      "balance": 3998.99,
-      "total_usage": 1476.01
+      "balance": 3986.08,
+      "total_usage": 1488.92
     },
     {
       "id": "a0d1fed253d03d84",
