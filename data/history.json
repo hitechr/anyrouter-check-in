@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "timezone": "Asia/Shanghai",
-  "updated_at": "2026-08-15T05:20:48Z",
+  "updated_at": "2026-08-15T05:49:52Z",
   "snapshots": [
     {
       "date": "2026-07-30",
@@ -1854,23 +1854,23 @@
     {
       "date": "2026-08-15",
       "schema_version": 1,
-      "generated_at": "2026-08-15T05:20:48Z",
+      "generated_at": "2026-08-15T05:49:52Z",
       "accounts": [
         {
           "id": "63f4af9ec88277c9",
           "name": "G-hitechr",
           "provider": "anyrouter",
-          "checkin_success": true,
-          "balance": 2746.7,
-          "total_usage": 6626.17
+          "checkin_success": false,
+          "balance": null,
+          "total_usage": null
         },
         {
           "id": "fea4d627ab48e72c",
           "name": "G-hapicvip",
           "provider": "anyrouter",
-          "checkin_success": true,
-          "balance": 6970.91,
-          "total_usage": 1989.09
+          "checkin_success": false,
+          "balance": null,
+          "total_usage": null
         },
         {
           "id": "2f92a9b745c0d19f",
