@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "timezone": "Asia/Shanghai",
-  "updated_at": "2026-08-16T13:09:52Z",
+  "updated_at": "2026-08-17T00:55:18Z",
   "snapshots": [
     {
       "date": "2026-07-30",
@@ -2070,6 +2070,139 @@
           "provider": "anyrouter",
           "checkin_success": true,
           "balance": 1575.0,
+          "total_usage": 0.0
+        }
+      ],
+      "closing_generated_at": "2026-08-17T00:55:18Z",
+      "closing_accounts": [
+        {
+          "id": "63f4af9ec88277c9",
+          "name": "G-hitechr",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 2796.7,
+          "total_usage": 6626.17
+        },
+        {
+          "id": "fea4d627ab48e72c",
+          "name": "G-hapicvip",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 6876.47,
+          "total_usage": 2133.53
+        },
+        {
+          "id": "2f92a9b745c0d19f",
+          "name": "L-hapic",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 5974.42,
+          "total_usage": 1100.58
+        },
+        {
+          "id": "b0eeb51188d9977b",
+          "name": "QL-github",
+          "provider": "anyrouter",
+          "checkin_success": false,
+          "balance": null,
+          "total_usage": null
+        },
+        {
+          "id": "a0d1fed253d03d84",
+          "name": "L-hitechrvip",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 1600.0,
+          "total_usage": 0.0
+        }
+      ]
+    },
+    {
+      "date": "2026-08-17",
+      "schema_version": 1,
+      "generated_at": "2026-08-17T00:55:18Z",
+      "accounts": [
+        {
+          "id": "63f4af9ec88277c9",
+          "name": "G-hitechr",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 2796.7,
+          "total_usage": 6626.17
+        },
+        {
+          "id": "fea4d627ab48e72c",
+          "name": "G-hapicvip",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 6876.47,
+          "total_usage": 2133.53
+        },
+        {
+          "id": "2f92a9b745c0d19f",
+          "name": "L-hapic",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 5974.42,
+          "total_usage": 1100.58
+        },
+        {
+          "id": "b0eeb51188d9977b",
+          "name": "QL-github",
+          "provider": "anyrouter",
+          "checkin_success": false,
+          "balance": null,
+          "total_usage": null
+        },
+        {
+          "id": "a0d1fed253d03d84",
+          "name": "L-hitechrvip",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 1600.0,
+          "total_usage": 0.0
+        }
+      ],
+      "opening_generated_at": "2026-08-17T00:55:18Z",
+      "opening_accounts": [
+        {
+          "id": "63f4af9ec88277c9",
+          "name": "G-hitechr",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 2796.7,
+          "total_usage": 6626.17
+        },
+        {
+          "id": "fea4d627ab48e72c",
+          "name": "G-hapicvip",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 6876.47,
+          "total_usage": 2133.53
+        },
+        {
+          "id": "2f92a9b745c0d19f",
+          "name": "L-hapic",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 5974.42,
+          "total_usage": 1100.58
+        },
+        {
+          "id": "b0eeb51188d9977b",
+          "name": "QL-github",
+          "provider": "anyrouter",
+          "checkin_success": false,
+          "balance": null,
+          "total_usage": null
+        },
+        {
+          "id": "a0d1fed253d03d84",
+          "name": "L-hitechrvip",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 1600.0,
           "total_usage": 0.0
         }
       ]
