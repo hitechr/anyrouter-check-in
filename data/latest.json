@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-18T09:09:12Z",
+  "generated_at": "2026-08-18T10:02:44Z",
   "accounts": [
     {
       "id": "63f4af9ec88277c9",
@@ -14,7 +14,7 @@
       "id": "fea4d627ab48e72c",
       "name": "G-hapicvip",
       "provider": "anyrouter",
-      "checkin_success": true,
+      "checkin_success": false,
       "balance": null,
       "total_usage": null
     },
@@ -22,7 +22,7 @@
       "id": "2f92a9b745c0d19f",
       "name": "L-hapic",
       "provider": "anyrouter",
-      "checkin_success": true,
+      "checkin_success": false,
       "balance": null,
       "total_usage": null
     },
@@ -38,7 +38,7 @@
       "id": "a0d1fed253d03d84",
       "name": "L-hitechrvip",
       "provider": "anyrouter",
-      "checkin_success": false,
+      "checkin_success": true,
       "balance": null,
       "total_usage": null
     }
