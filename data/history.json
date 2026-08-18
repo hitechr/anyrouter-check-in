@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "timezone": "Asia/Shanghai",
-  "updated_at": "2026-08-18T11:00:43Z",
+  "updated_at": "2026-08-18T11:21:42Z",
   "snapshots": [
     {
       "date": "2026-07-30",
@@ -2253,47 +2253,47 @@
     {
       "date": "2026-08-18",
       "schema_version": 1,
-      "generated_at": "2026-08-18T11:00:43Z",
+      "generated_at": "2026-08-18T11:21:42Z",
       "accounts": [
         {
           "id": "63f4af9ec88277c9",
           "name": "G-hitechr",
           "provider": "anyrouter",
-          "checkin_success": false,
-          "balance": null,
-          "total_usage": null
+          "checkin_success": true,
+          "balance": 2821.7,
+          "total_usage": 6626.17
         },
         {
           "id": "fea4d627ab48e72c",
           "name": "G-hapicvip",
           "provider": "anyrouter",
           "checkin_success": true,
-          "balance": 6346.77,
-          "total_usage": 2688.23
+          "balance": 6343.37,
+          "total_usage": 2691.63
         },
         {
           "id": "2f92a9b745c0d19f",
           "name": "L-hapic",
           "provider": "anyrouter",
-          "checkin_success": false,
-          "balance": null,
-          "total_usage": null
+          "checkin_success": true,
+          "balance": 5914.6,
+          "total_usage": 1185.4
         },
         {
           "id": "b0eeb51188d9977b",
           "name": "QL-github",
           "provider": "anyrouter",
-          "checkin_success": false,
-          "balance": null,
-          "total_usage": null
+          "checkin_success": true,
+          "balance": 3425.87,
+          "total_usage": 2124.13
         },
         {
           "id": "a0d1fed253d03d84",
           "name": "L-hitechrvip",
           "provider": "anyrouter",
-          "checkin_success": false,
-          "balance": null,
-          "total_usage": null
+          "checkin_success": true,
+          "balance": 1625.0,
+          "total_usage": 0.0
         }
       ],
       "opening_generated_at": "2026-08-18T00:47:25Z",
