@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "timezone": "Asia/Shanghai",
-  "updated_at": "2026-08-26T02:25:07Z",
+  "updated_at": "2026-08-26T03:32:49Z",
   "snapshots": [
     {
       "date": "2026-07-30",
@@ -3317,7 +3317,7 @@
     {
       "date": "2026-08-26",
       "schema_version": 1,
-      "generated_at": "2026-08-26T02:25:07Z",
+      "generated_at": "2026-08-26T03:32:49Z",
       "accounts": [
         {
           "id": "63f4af9ec88277c9",
@@ -3340,8 +3340,8 @@
           "name": "L-hapic",
           "provider": "anyrouter",
           "checkin_success": true,
-          "balance": 5847.7,
-          "total_usage": 1452.3
+          "balance": 5845.27,
+          "total_usage": 1454.73
         },
         {
           "id": "b0eeb51188d9977b",
