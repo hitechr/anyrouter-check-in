@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "timezone": "Asia/Shanghai",
-  "updated_at": "2026-08-28T00:43:20Z",
+  "updated_at": "2026-08-28T06:17:51Z",
   "snapshots": [
     {
       "date": "2026-07-30",
@@ -3583,7 +3583,7 @@
     {
       "date": "2026-08-28",
       "schema_version": 1,
-      "generated_at": "2026-08-28T00:43:20Z",
+      "generated_at": "2026-08-28T06:17:51Z",
       "accounts": [
         {
           "id": "63f4af9ec88277c9",
@@ -3598,16 +3598,16 @@
           "name": "G-hapicvip",
           "provider": "anyrouter",
           "checkin_success": true,
-          "balance": 5827.26,
-          "total_usage": 3457.74
+          "balance": 5795.19,
+          "total_usage": 3489.81
         },
         {
           "id": "2f92a9b745c0d19f",
           "name": "L-hapic",
           "provider": "anyrouter",
           "checkin_success": true,
-          "balance": 5779.56,
-          "total_usage": 1570.44
+          "balance": 5730.64,
+          "total_usage": 1619.36
         },
         {
           "id": "b0eeb51188d9977b",
