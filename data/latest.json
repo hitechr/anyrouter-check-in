@@ -1,22 +1,22 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-29T03:39:43Z",
+  "generated_at": "2026-08-29T03:47:56Z",
   "accounts": [
     {
       "id": "63f4af9ec88277c9",
       "name": "G-hitechr",
       "provider": "anyrouter",
-      "checkin_success": false,
-      "balance": null,
-      "total_usage": null
+      "checkin_success": true,
+      "balance": 3096.7,
+      "total_usage": 6626.17
     },
     {
       "id": "fea4d627ab48e72c",
       "name": "G-hapicvip",
       "provider": "anyrouter",
       "checkin_success": true,
-      "balance": 5656.21,
-      "total_usage": 3653.79
+      "balance": 5649.12,
+      "total_usage": 3660.88
     },
     {
       "id": "2f92a9b745c0d19f",
