@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-02T12:13:21Z",
+  "generated_at": "2026-09-02T16:46:00Z",
   "accounts": [
     {
       "id": "63f4af9ec88277c9",
@@ -15,8 +15,8 @@
       "name": "G-hapicvip",
       "provider": "anyrouter",
       "checkin_success": true,
-      "balance": 4547.31,
-      "total_usage": 4864.64
+      "balance": 4455.46,
+      "total_usage": 4956.48
     },
     {
       "id": "2f92a9b745c0d19f",
