@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "timezone": "Asia/Shanghai",
-  "updated_at": "2026-09-04T09:13:12Z",
+  "updated_at": "2026-09-04T12:12:51Z",
   "snapshots": [
     {
       "date": "2026-07-30",
@@ -4514,15 +4514,15 @@
     {
       "date": "2026-09-04",
       "schema_version": 1,
-      "generated_at": "2026-09-04T09:13:12Z",
+      "generated_at": "2026-09-04T12:12:51Z",
       "accounts": [
         {
           "id": "63f4af9ec88277c9",
           "name": "G-hitechr",
           "provider": "anyrouter",
           "checkin_success": true,
-          "balance": 3246.7,
-          "total_usage": 6626.17
+          "balance": 3209.17,
+          "total_usage": 6663.7
         },
         {
           "id": "fea4d627ab48e72c",
@@ -4537,8 +4537,8 @@
           "name": "L-hapic",
           "provider": "anyrouter",
           "checkin_success": true,
-          "balance": 3288.53,
-          "total_usage": 4236.47
+          "balance": 3276.49,
+          "total_usage": 4248.51
         },
         {
           "id": "b0eeb51188d9977b",
