@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-05T02:30:48Z",
+  "generated_at": "2026-09-05T07:05:55Z",
   "accounts": [
     {
       "id": "63f4af9ec88277c9",
       "name": "G-hitechr",
       "provider": "anyrouter",
       "checkin_success": true,
-      "balance": 3032.09,
-      "total_usage": 6865.78
+      "balance": 2991.84,
+      "total_usage": 6906.03
     },
     {
       "id": "fea4d627ab48e72c",
