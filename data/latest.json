@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-08T12:31:53Z",
+  "generated_at": "2026-09-09T02:38:04Z",
   "accounts": [
     {
       "id": "63f4af9ec88277c9",
       "name": "G-hitechr",
       "provider": "anyrouter",
       "checkin_success": true,
-      "balance": 3062.77,
+      "balance": 3087.77,
       "total_usage": 6910.09
     },
     {
@@ -15,7 +15,7 @@
       "name": "G-hapicvip",
       "provider": "anyrouter",
       "checkin_success": true,
-      "balance": 3706.21,
+      "balance": 3731.21,
       "total_usage": 5855.73
     },
     {
@@ -23,15 +23,15 @@
       "name": "L-hapic",
       "provider": "anyrouter",
       "checkin_success": true,
-      "balance": 3338.02,
-      "total_usage": 4286.98
+      "balance": 3361.58,
+      "total_usage": 4288.42
     },
     {
       "id": "b0eeb51188d9977b",
       "name": "QL-github",
       "provider": "anyrouter",
       "checkin_success": true,
-      "balance": 3938.66,
+      "balance": 3963.66,
       "total_usage": 2136.34
     },
     {
@@ -39,7 +39,7 @@
       "name": "L-hitechrvip",
       "provider": "anyrouter",
       "checkin_success": true,
-      "balance": 2150.0,
+      "balance": 2175.0,
       "total_usage": 0.0
     }
   ]
