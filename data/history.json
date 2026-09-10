@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "timezone": "Asia/Shanghai",
-  "updated_at": "2026-09-09T12:38:51Z",
+  "updated_at": "2026-09-10T02:39:55Z",
   "snapshots": [
     {
       "date": "2026-07-30",
@@ -5263,6 +5263,139 @@
           "checkin_success": true,
           "balance": 2175.0,
           "total_usage": 0.0
+        }
+      ],
+      "closing_generated_at": "2026-09-10T02:39:55Z",
+      "closing_accounts": [
+        {
+          "id": "63f4af9ec88277c9",
+          "name": "G-hitechr",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 3112.77,
+          "total_usage": 6910.09
+        },
+        {
+          "id": "fea4d627ab48e72c",
+          "name": "G-hapicvip",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 3627.82,
+          "total_usage": 5984.12
+        },
+        {
+          "id": "2f92a9b745c0d19f",
+          "name": "L-hapic",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 2908.42,
+          "total_usage": 4766.58
+        },
+        {
+          "id": "b0eeb51188d9977b",
+          "name": "QL-github",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 3944.77,
+          "total_usage": 2180.23
+        },
+        {
+          "id": "a0d1fed253d03d84",
+          "name": "L-hitechrvip",
+          "provider": "anyrouter",
+          "checkin_success": false,
+          "balance": null,
+          "total_usage": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-10",
+      "schema_version": 1,
+      "generated_at": "2026-09-10T02:39:55Z",
+      "accounts": [
+        {
+          "id": "63f4af9ec88277c9",
+          "name": "G-hitechr",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 3112.77,
+          "total_usage": 6910.09
+        },
+        {
+          "id": "fea4d627ab48e72c",
+          "name": "G-hapicvip",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 3627.82,
+          "total_usage": 5984.12
+        },
+        {
+          "id": "2f92a9b745c0d19f",
+          "name": "L-hapic",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 2908.42,
+          "total_usage": 4766.58
+        },
+        {
+          "id": "b0eeb51188d9977b",
+          "name": "QL-github",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 3944.77,
+          "total_usage": 2180.23
+        },
+        {
+          "id": "a0d1fed253d03d84",
+          "name": "L-hitechrvip",
+          "provider": "anyrouter",
+          "checkin_success": false,
+          "balance": null,
+          "total_usage": null
+        }
+      ],
+      "opening_generated_at": "2026-09-10T02:39:55Z",
+      "opening_accounts": [
+        {
+          "id": "63f4af9ec88277c9",
+          "name": "G-hitechr",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 3112.77,
+          "total_usage": 6910.09
+        },
+        {
+          "id": "fea4d627ab48e72c",
+          "name": "G-hapicvip",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 3627.82,
+          "total_usage": 5984.12
+        },
+        {
+          "id": "2f92a9b745c0d19f",
+          "name": "L-hapic",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 2908.42,
+          "total_usage": 4766.58
+        },
+        {
+          "id": "b0eeb51188d9977b",
+          "name": "QL-github",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 3944.77,
+          "total_usage": 2180.23
+        },
+        {
+          "id": "a0d1fed253d03d84",
+          "name": "L-hitechrvip",
+          "provider": "anyrouter",
+          "checkin_success": false,
+          "balance": null,
+          "total_usage": null
         }
       ]
     }
