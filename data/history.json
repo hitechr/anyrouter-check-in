@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "timezone": "Asia/Shanghai",
-  "updated_at": "2026-09-24T01:23:17Z",
+  "updated_at": "2026-09-24T02:43:59Z",
   "snapshots": [
     {
       "date": "2026-07-30",
@@ -7174,7 +7174,7 @@
     {
       "date": "2026-09-24",
       "schema_version": 1,
-      "generated_at": "2026-09-24T01:23:17Z",
+      "generated_at": "2026-09-24T02:43:59Z",
       "accounts": [
         {
           "id": "63f4af9ec88277c9",
@@ -7189,8 +7189,8 @@
           "name": "G-hapicvip",
           "provider": "anyrouter",
           "checkin_success": true,
-          "balance": 1835.1,
-          "total_usage": 8126.85
+          "balance": 1823.62,
+          "total_usage": 8138.32
         },
         {
           "id": "2f92a9b745c0d19f",
@@ -7205,8 +7205,8 @@
           "name": "QL-github",
           "provider": "anyrouter",
           "checkin_success": true,
-          "balance": 3119.16,
-          "total_usage": 3330.84
+          "balance": 3115.88,
+          "total_usage": 3334.12
         },
         {
           "id": "a0d1fed253d03d84",
