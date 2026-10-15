@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "timezone": "Asia/Shanghai",
-  "updated_at": "2026-10-14T14:16:44Z",
+  "updated_at": "2026-10-15T02:48:21Z",
   "snapshots": [
     {
       "date": "2026-07-30",
@@ -9909,6 +9909,139 @@
           "provider": "anyrouter",
           "checkin_success": true,
           "balance": 2886.31,
+          "total_usage": 4063.69
+        },
+        {
+          "id": "a0d1fed253d03d84",
+          "name": "L-hitechrvip",
+          "provider": "anyrouter",
+          "checkin_success": false,
+          "balance": null,
+          "total_usage": null
+        }
+      ],
+      "closing_generated_at": "2026-10-15T02:48:21Z",
+      "closing_accounts": [
+        {
+          "id": "63f4af9ec88277c9",
+          "name": "G-hitechr",
+          "provider": "anyrouter",
+          "checkin_success": false,
+          "balance": null,
+          "total_usage": null
+        },
+        {
+          "id": "fea4d627ab48e72c",
+          "name": "G-hapicvip",
+          "provider": "anyrouter",
+          "checkin_success": false,
+          "balance": null,
+          "total_usage": null
+        },
+        {
+          "id": "2f92a9b745c0d19f",
+          "name": "L-hapic",
+          "provider": "anyrouter",
+          "checkin_success": false,
+          "balance": null,
+          "total_usage": null
+        },
+        {
+          "id": "b0eeb51188d9977b",
+          "name": "QL-github",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 2911.31,
+          "total_usage": 4063.69
+        },
+        {
+          "id": "a0d1fed253d03d84",
+          "name": "L-hitechrvip",
+          "provider": "anyrouter",
+          "checkin_success": false,
+          "balance": null,
+          "total_usage": null
+        }
+      ]
+    },
+    {
+      "date": "2026-10-15",
+      "schema_version": 1,
+      "generated_at": "2026-10-15T02:48:21Z",
+      "accounts": [
+        {
+          "id": "63f4af9ec88277c9",
+          "name": "G-hitechr",
+          "provider": "anyrouter",
+          "checkin_success": false,
+          "balance": null,
+          "total_usage": null
+        },
+        {
+          "id": "fea4d627ab48e72c",
+          "name": "G-hapicvip",
+          "provider": "anyrouter",
+          "checkin_success": false,
+          "balance": null,
+          "total_usage": null
+        },
+        {
+          "id": "2f92a9b745c0d19f",
+          "name": "L-hapic",
+          "provider": "anyrouter",
+          "checkin_success": false,
+          "balance": null,
+          "total_usage": null
+        },
+        {
+          "id": "b0eeb51188d9977b",
+          "name": "QL-github",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 2911.31,
+          "total_usage": 4063.69
+        },
+        {
+          "id": "a0d1fed253d03d84",
+          "name": "L-hitechrvip",
+          "provider": "anyrouter",
+          "checkin_success": false,
+          "balance": null,
+          "total_usage": null
+        }
+      ],
+      "opening_generated_at": "2026-10-15T02:48:21Z",
+      "opening_accounts": [
+        {
+          "id": "63f4af9ec88277c9",
+          "name": "G-hitechr",
+          "provider": "anyrouter",
+          "checkin_success": false,
+          "balance": null,
+          "total_usage": null
+        },
+        {
+          "id": "fea4d627ab48e72c",
+          "name": "G-hapicvip",
+          "provider": "anyrouter",
+          "checkin_success": false,
+          "balance": null,
+          "total_usage": null
+        },
+        {
+          "id": "2f92a9b745c0d19f",
+          "name": "L-hapic",
+          "provider": "anyrouter",
+          "checkin_success": false,
+          "balance": null,
+          "total_usage": null
+        },
+        {
+          "id": "b0eeb51188d9977b",
+          "name": "QL-github",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 2911.31,
           "total_usage": 4063.69
         },
         {
