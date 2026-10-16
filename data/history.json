@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "timezone": "Asia/Shanghai",
-  "updated_at": "2026-10-16T02:45:39Z",
+  "updated_at": "2026-10-16T07:48:31Z",
   "snapshots": [
     {
       "date": "2026-07-30",
@@ -10100,7 +10100,7 @@
     {
       "date": "2026-10-16",
       "schema_version": 1,
-      "generated_at": "2026-10-16T02:45:39Z",
+      "generated_at": "2026-10-16T07:48:31Z",
       "accounts": [
         {
           "id": "63f4af9ec88277c9",
@@ -10130,9 +10130,9 @@
           "id": "b0eeb51188d9977b",
           "name": "QL-github",
           "provider": "anyrouter",
-          "checkin_success": true,
-          "balance": 2917.05,
-          "total_usage": 4082.95
+          "checkin_success": false,
+          "balance": null,
+          "total_usage": null
         },
         {
           "id": "a0d1fed253d03d84",
