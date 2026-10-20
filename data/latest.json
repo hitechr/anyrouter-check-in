@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-20T08:46:27Z",
+  "generated_at": "2026-10-20T10:44:56Z",
   "accounts": [
     {
       "id": "63f4af9ec88277c9",
@@ -25,6 +25,14 @@
       "checkin_success": true,
       "balance": 2593.5,
       "total_usage": 5956.5
+    },
+    {
+      "id": "b0eeb51188d9977b",
+      "name": "QL-github",
+      "provider": "anyrouter",
+      "checkin_success": true,
+      "balance": 2900.07,
+      "total_usage": 4124.93
     },
     {
       "id": "a0d1fed253d03d84",
