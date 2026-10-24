@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "timezone": "Asia/Shanghai",
-  "updated_at": "2026-10-24T12:24:20Z",
+  "updated_at": "2026-10-24T16:09:35Z",
   "snapshots": [
     {
       "date": "2026-07-30",
@@ -11208,6 +11208,139 @@
         }
       ],
       "opening_generated_at": "2026-10-24T03:01:32Z",
+      "opening_accounts": [
+        {
+          "id": "63f4af9ec88277c9",
+          "name": "G-hitechr",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 4112.77,
+          "total_usage": 6910.09
+        },
+        {
+          "id": "8a4704a2f052cbb8",
+          "name": "G-hitechrvip-sys",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 1796.99,
+          "total_usage": 8789.96
+        },
+        {
+          "id": "2f92a9b745c0d19f",
+          "name": "L-hapic",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 2693.5,
+          "total_usage": 5956.5
+        },
+        {
+          "id": "b0eeb51188d9977b",
+          "name": "QL-github",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 3000.07,
+          "total_usage": 4124.93
+        },
+        {
+          "id": "a0d1fed253d03d84",
+          "name": "L-hitechrvip",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 3048.44,
+          "total_usage": 1.56
+        }
+      ],
+      "closing_generated_at": "2026-10-24T16:09:35Z",
+      "closing_accounts": [
+        {
+          "id": "63f4af9ec88277c9",
+          "name": "G-hitechr",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 4112.77,
+          "total_usage": 6910.09
+        },
+        {
+          "id": "8a4704a2f052cbb8",
+          "name": "G-hitechrvip-sys",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 1796.99,
+          "total_usage": 8789.96
+        },
+        {
+          "id": "2f92a9b745c0d19f",
+          "name": "L-hapic",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 2693.5,
+          "total_usage": 5956.5
+        },
+        {
+          "id": "b0eeb51188d9977b",
+          "name": "QL-github",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 3000.07,
+          "total_usage": 4124.93
+        },
+        {
+          "id": "a0d1fed253d03d84",
+          "name": "L-hitechrvip",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 3048.44,
+          "total_usage": 1.56
+        }
+      ]
+    },
+    {
+      "date": "2026-10-25",
+      "schema_version": 1,
+      "generated_at": "2026-10-24T16:09:35Z",
+      "accounts": [
+        {
+          "id": "63f4af9ec88277c9",
+          "name": "G-hitechr",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 4112.77,
+          "total_usage": 6910.09
+        },
+        {
+          "id": "8a4704a2f052cbb8",
+          "name": "G-hitechrvip-sys",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 1796.99,
+          "total_usage": 8789.96
+        },
+        {
+          "id": "2f92a9b745c0d19f",
+          "name": "L-hapic",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 2693.5,
+          "total_usage": 5956.5
+        },
+        {
+          "id": "b0eeb51188d9977b",
+          "name": "QL-github",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 3000.07,
+          "total_usage": 4124.93
+        },
+        {
+          "id": "a0d1fed253d03d84",
+          "name": "L-hitechrvip",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 3048.44,
+          "total_usage": 1.56
+        }
+      ],
+      "opening_generated_at": "2026-10-24T16:09:35Z",
       "opening_accounts": [
         {
           "id": "63f4af9ec88277c9",
