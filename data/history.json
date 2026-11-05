@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "timezone": "Asia/Shanghai",
-  "updated_at": "2026-11-04T19:57:14Z",
+  "updated_at": "2026-11-05T04:44:03Z",
   "snapshots": [
     {
       "date": "2026-07-30",
@@ -12760,14 +12760,14 @@
     {
       "date": "2026-11-05",
       "schema_version": 1,
-      "generated_at": "2026-11-04T19:57:14Z",
+      "generated_at": "2026-11-05T04:44:03Z",
       "accounts": [
         {
           "id": "63f4af9ec88277c9",
           "name": "G-hitechr",
           "provider": "anyrouter",
           "checkin_success": true,
-          "balance": 4387.77,
+          "balance": 4412.77,
           "total_usage": 6910.09
         },
         {
@@ -12775,7 +12775,7 @@
           "name": "G-hitechrvip-sys",
           "provider": "anyrouter",
           "checkin_success": true,
-          "balance": 2070.0,
+          "balance": 2095.0,
           "total_usage": 8791.94
         },
         {
@@ -12783,7 +12783,7 @@
           "name": "L-hapic",
           "provider": "anyrouter",
           "checkin_success": true,
-          "balance": 2967.1,
+          "balance": 2992.1,
           "total_usage": 5956.5
         },
         {
@@ -12791,7 +12791,7 @@
           "name": "QL-github",
           "provider": "anyrouter",
           "checkin_success": true,
-          "balance": 3275.07,
+          "balance": 3300.07,
           "total_usage": 4124.93
         },
         {
@@ -12799,7 +12799,7 @@
           "name": "L-hitechrvip",
           "provider": "anyrouter",
           "checkin_success": true,
-          "balance": 3323.44,
+          "balance": 3348.44,
           "total_usage": 1.56
         }
       ],
