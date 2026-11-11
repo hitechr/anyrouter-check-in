@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "timezone": "Asia/Shanghai",
-  "updated_at": "2026-11-11T05:10:54Z",
+  "updated_at": "2026-11-11T11:12:11Z",
   "snapshots": [
     {
       "date": "2026-07-30",
@@ -13558,15 +13558,15 @@
     {
       "date": "2026-11-11",
       "schema_version": 1,
-      "generated_at": "2026-11-11T05:10:54Z",
+      "generated_at": "2026-11-11T11:12:11Z",
       "accounts": [
         {
           "id": "63f4af9ec88277c9",
           "name": "G-hitechr",
           "provider": "anyrouter",
           "checkin_success": true,
-          "balance": 4518.8,
-          "total_usage": 6954.07
+          "balance": 4518.5,
+          "total_usage": 6954.37
         },
         {
           "id": "8a4704a2f052cbb8",
@@ -13589,8 +13589,8 @@
           "name": "QL-github",
           "provider": "anyrouter",
           "checkin_success": true,
-          "balance": 3375.21,
-          "total_usage": 4199.79
+          "balance": 3326.06,
+          "total_usage": 4248.94
         },
         {
           "id": "a0d1fed253d03d84",
