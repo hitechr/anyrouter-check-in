@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "timezone": "Asia/Shanghai",
-  "updated_at": "2026-11-10T14:08:48Z",
+  "updated_at": "2026-11-11T00:33:09Z",
   "snapshots": [
     {
       "date": "2026-07-30",
@@ -13508,6 +13508,139 @@
           "provider": "anyrouter",
           "checkin_success": true,
           "balance": 3473.44,
+          "total_usage": 1.56
+        }
+      ],
+      "closing_generated_at": "2026-11-11T00:33:09Z",
+      "closing_accounts": [
+        {
+          "id": "63f4af9ec88277c9",
+          "name": "G-hitechr",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 4536.62,
+          "total_usage": 6936.25
+        },
+        {
+          "id": "8a4704a2f052cbb8",
+          "name": "G-hitechrvip-sys",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 2147.19,
+          "total_usage": 8889.75
+        },
+        {
+          "id": "2f92a9b745c0d19f",
+          "name": "L-hapic",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 2954.43,
+          "total_usage": 6144.17
+        },
+        {
+          "id": "b0eeb51188d9977b",
+          "name": "QL-github",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 3375.49,
+          "total_usage": 4199.51
+        },
+        {
+          "id": "a0d1fed253d03d84",
+          "name": "L-hitechrvip",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 3498.44,
+          "total_usage": 1.56
+        }
+      ]
+    },
+    {
+      "date": "2026-11-11",
+      "schema_version": 1,
+      "generated_at": "2026-11-11T00:33:09Z",
+      "accounts": [
+        {
+          "id": "63f4af9ec88277c9",
+          "name": "G-hitechr",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 4536.62,
+          "total_usage": 6936.25
+        },
+        {
+          "id": "8a4704a2f052cbb8",
+          "name": "G-hitechrvip-sys",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 2147.19,
+          "total_usage": 8889.75
+        },
+        {
+          "id": "2f92a9b745c0d19f",
+          "name": "L-hapic",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 2954.43,
+          "total_usage": 6144.17
+        },
+        {
+          "id": "b0eeb51188d9977b",
+          "name": "QL-github",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 3375.49,
+          "total_usage": 4199.51
+        },
+        {
+          "id": "a0d1fed253d03d84",
+          "name": "L-hitechrvip",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 3498.44,
+          "total_usage": 1.56
+        }
+      ],
+      "opening_generated_at": "2026-11-11T00:33:09Z",
+      "opening_accounts": [
+        {
+          "id": "63f4af9ec88277c9",
+          "name": "G-hitechr",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 4536.62,
+          "total_usage": 6936.25
+        },
+        {
+          "id": "8a4704a2f052cbb8",
+          "name": "G-hitechrvip-sys",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 2147.19,
+          "total_usage": 8889.75
+        },
+        {
+          "id": "2f92a9b745c0d19f",
+          "name": "L-hapic",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 2954.43,
+          "total_usage": 6144.17
+        },
+        {
+          "id": "b0eeb51188d9977b",
+          "name": "QL-github",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 3375.49,
+          "total_usage": 4199.51
+        },
+        {
+          "id": "a0d1fed253d03d84",
+          "name": "L-hitechrvip",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 3498.44,
           "total_usage": 1.56
         }
       ]
