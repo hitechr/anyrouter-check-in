@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "timezone": "Asia/Shanghai",
-  "updated_at": "2026-11-16T04:21:42Z",
+  "updated_at": "2026-11-16T13:01:43Z",
   "snapshots": [
     {
       "date": "2026-07-30",
@@ -14223,7 +14223,7 @@
     {
       "date": "2026-11-16",
       "schema_version": 1,
-      "generated_at": "2026-11-16T04:21:42Z",
+      "generated_at": "2026-11-16T13:01:43Z",
       "accounts": [
         {
           "id": "63f4af9ec88277c9",
@@ -14238,8 +14238,8 @@
           "name": "G-hitechrvip-sys",
           "provider": "anyrouter",
           "checkin_success": true,
-          "balance": 1934.24,
-          "total_usage": 9227.7
+          "balance": 1934.07,
+          "total_usage": 9227.87
         },
         {
           "id": "2f92a9b745c0d19f",
