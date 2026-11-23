@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "timezone": "Asia/Shanghai",
-  "updated_at": "2026-11-23T05:16:10Z",
+  "updated_at": "2026-11-23T16:18:31Z",
   "snapshots": [
     {
       "date": "2026-07-30",
@@ -15230,6 +15230,139 @@
           "checkin_success": true,
           "balance": 3032.46,
           "total_usage": 4842.54
+        },
+        {
+          "id": "a0d1fed253d03d84",
+          "name": "L-hitechrvip",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 3798.44,
+          "total_usage": 1.56
+        }
+      ],
+      "closing_generated_at": "2026-11-23T16:18:31Z",
+      "closing_accounts": [
+        {
+          "id": "63f4af9ec88277c9",
+          "name": "G-hitechr",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 4154.69,
+          "total_usage": 7618.18
+        },
+        {
+          "id": "8a4704a2f052cbb8",
+          "name": "G-hitechrvip-sys",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 1978.46,
+          "total_usage": 9358.49
+        },
+        {
+          "id": "2f92a9b745c0d19f",
+          "name": "L-hapic",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 3012.9,
+          "total_usage": 6385.7
+        },
+        {
+          "id": "b0eeb51188d9977b",
+          "name": "QL-github",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 3027.77,
+          "total_usage": 4847.23
+        },
+        {
+          "id": "a0d1fed253d03d84",
+          "name": "L-hitechrvip",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 3798.44,
+          "total_usage": 1.56
+        }
+      ]
+    },
+    {
+      "date": "2026-11-24",
+      "schema_version": 1,
+      "generated_at": "2026-11-23T16:18:31Z",
+      "accounts": [
+        {
+          "id": "63f4af9ec88277c9",
+          "name": "G-hitechr",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 4154.69,
+          "total_usage": 7618.18
+        },
+        {
+          "id": "8a4704a2f052cbb8",
+          "name": "G-hitechrvip-sys",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 1978.46,
+          "total_usage": 9358.49
+        },
+        {
+          "id": "2f92a9b745c0d19f",
+          "name": "L-hapic",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 3012.9,
+          "total_usage": 6385.7
+        },
+        {
+          "id": "b0eeb51188d9977b",
+          "name": "QL-github",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 3027.77,
+          "total_usage": 4847.23
+        },
+        {
+          "id": "a0d1fed253d03d84",
+          "name": "L-hitechrvip",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 3798.44,
+          "total_usage": 1.56
+        }
+      ],
+      "opening_generated_at": "2026-11-23T16:18:31Z",
+      "opening_accounts": [
+        {
+          "id": "63f4af9ec88277c9",
+          "name": "G-hitechr",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 4154.69,
+          "total_usage": 7618.18
+        },
+        {
+          "id": "8a4704a2f052cbb8",
+          "name": "G-hitechrvip-sys",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 1978.46,
+          "total_usage": 9358.49
+        },
+        {
+          "id": "2f92a9b745c0d19f",
+          "name": "L-hapic",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 3012.9,
+          "total_usage": 6385.7
+        },
+        {
+          "id": "b0eeb51188d9977b",
+          "name": "QL-github",
+          "provider": "anyrouter",
+          "checkin_success": true,
+          "balance": 3027.77,
+          "total_usage": 4847.23
         },
         {
           "id": "a0d1fed253d03d84",
